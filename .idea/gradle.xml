@@ -4,8 +4,10 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/comment" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="azul-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/comment" />
@@ -14,7 +16,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/reservation" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="azul-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/reservation" />
@@ -23,7 +25,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/room" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="azul-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/room" />
@@ -32,7 +34,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/user" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="azul-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/user" />
@@ -41,7 +43,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/wishlist" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="gradleJvm" value="azul-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/wishlist" />
