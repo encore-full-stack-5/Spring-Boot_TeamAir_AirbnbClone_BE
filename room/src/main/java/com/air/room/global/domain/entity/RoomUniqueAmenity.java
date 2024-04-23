@@ -1,10 +1,7 @@
 package com.air.room.global.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
@@ -14,14 +11,16 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RoomUniqueAmenity {
     @Id
-    @Column(name = "ROOM_UNIQUE_AMENITy_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_unique_amenities_room_unique_amenity_id_seq")
+    @SequenceGenerator(name = "room_unique_amenities_room_unique_amenity_id_seq", sequenceName = "room_unique_amenities_room_unique_amenity_id_seq", allocationSize = 1)
+    @Column(name = "ROOM_UNIQUE_AMENITY_ID", columnDefinition = "serial")
     private Integer id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNIQUE_AMENITy_id")
     private UniqueAmenity uniqueAmenity;
 }

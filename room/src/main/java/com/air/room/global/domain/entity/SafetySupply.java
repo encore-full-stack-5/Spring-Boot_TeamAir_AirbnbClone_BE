@@ -11,10 +11,12 @@ import lombok.*;
 @Builder
 public class SafetySupply {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "safety_supplies_safety_id_seq")
+    @SequenceGenerator(name = "safety_supplies_safety_id_seq", sequenceName = "safety_supplies_safety_id_seq", allocationSize = 1)
     @Column(name="safety_id")
     private Integer id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
 

@@ -14,14 +14,16 @@ import lombok.NoArgsConstructor;
 @Builder
 public class RoomAccessibility {
     @Id
-    @Column(name = "ROOM_ACCESSIBILITy_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_accessibilites_room_accessibility_id_seq")
+    @SequenceGenerator(name = "room_accessibilites_room_accessibility_id_seq", sequenceName = "room_accessibilites_room_accessibility_id_seq", allocationSize = 1)
+    @Column(name = "room_accessibility_id")
     private Integer id;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "accessibility_id")
     private Accessibility accessibility;
 }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Spring-Boot_TeamAir_AirbnbClone_BE.iml" filepath="$PROJECT_DIR$/.idea/Spring-Boot_TeamAir_AirbnbClone_BE.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/comment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/comment.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/room.main.iml" filepath="$PROJECT_DIR$/.idea/modules/room.main.iml" />
     </modules>
   </component>
 </project>
