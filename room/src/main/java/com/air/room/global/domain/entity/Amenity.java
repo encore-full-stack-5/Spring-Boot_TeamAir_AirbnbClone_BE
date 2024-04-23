@@ -17,7 +17,7 @@ public class Amenity{
     @SequenceGenerator(name = "amenities_amenity_id_seq", sequenceName = "amenities_amenity_id_seq", allocationSize = 1)
     @Column(name = "Amenity_id")
     private Integer id;
-    @Column(name = "Amenity_name")
+    @Column(name = "Amenity_name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "amenity")

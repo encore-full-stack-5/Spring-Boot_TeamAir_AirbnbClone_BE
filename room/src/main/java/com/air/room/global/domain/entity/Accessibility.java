@@ -18,7 +18,7 @@ public class Accessibility {
     @SequenceGenerator(name = "accessibilites_accessibility_id_seq", sequenceName = "accessibilites_accessibility_id_seq", allocationSize = 1)
     @Column(name = "accessibility_id")
     private Integer id;
-    @Column(name = "accessibility_name")
+    @Column(name = "accessibility_name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "accessibility")

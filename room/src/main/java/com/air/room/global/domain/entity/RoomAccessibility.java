@@ -20,10 +20,10 @@ public class RoomAccessibility {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "accessibility_id")
+    @JoinColumn(name = "accessibility_id", nullable = false)
     private Accessibility accessibility;
 }

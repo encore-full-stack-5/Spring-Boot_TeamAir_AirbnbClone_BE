@@ -20,15 +20,15 @@ public class SafetySupply {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    @Column(name="safety_fire_alram")
+    @Column(name="safety_fire_alram", nullable = false)
     private Boolean fireAlram;
 
-    @Column(name="safety_aid_kit")
+    @Column(name="safety_aid_kit", nullable = false)
     private Boolean aidKit;
 
-    @Column(name="safety_extinguisher")
+    @Column(name="safety_extinguisher", nullable = false)
     private Boolean extinguisher;
 
-    @Column(name="safety_co_alram")
+    @Column(name="safety_co_alram", nullable = false)
     private Boolean coAlram;
 }

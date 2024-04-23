@@ -17,7 +17,7 @@ public class UniqueAmenity {
     @SequenceGenerator(name = "unique_amenities_unique_amenity_id_seq", sequenceName = "unique_amenities_unique_amenity_id_seq", allocationSize = 1)
     @Column(name = "unique_amenity_id")
     private Integer id;
-    @Column(name = "unique_amenity_name")
+    @Column(name = "unique_amenity_name", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "uniqueAmenity")

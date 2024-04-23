@@ -17,8 +17,8 @@ public class City {
     @SequenceGenerator(name = "cites_city_id_seq", sequenceName = "cites_city_id_seq", allocationSize = 1)
     @Column(name = "city_id")
     private Integer id;
-    @Column(name = "city_code")
+    @Column(name = "city_code", nullable = false)
     private Integer code;
-    @Column(name = "city_name")
+    @Column(name = "city_name", nullable = false)
     private String name;
 }
