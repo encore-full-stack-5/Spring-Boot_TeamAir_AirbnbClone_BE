@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 public class RoomAmenity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_amenities_room_amenity_id_seq")
-    @SequenceGenerator(name = "room_amenities_room_amenity_id_seq", sequenceName = "room_amenities_room_amenity_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "room_amenities_room_amenity_id_seq", sequenceName = "ROOM_AMENITIES_ROOM_AMENITY_ID_SEQ", allocationSize = 1)
     @Column(name = "ROOM_AMENITY_id", columnDefinition = "serial")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
+    @JoinColumn(name = "ROOM_ID", nullable = false)
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)

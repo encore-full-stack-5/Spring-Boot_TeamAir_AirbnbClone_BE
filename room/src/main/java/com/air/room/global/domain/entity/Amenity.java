@@ -14,10 +14,10 @@ import java.util.List;
 public class Amenity{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "amenities_amenity_id_seq")
-    @SequenceGenerator(name = "amenities_amenity_id_seq", sequenceName = "amenities_amenity_id_seq", allocationSize = 1)
-    @Column(name = "Amenity_id")
+    @SequenceGenerator(name = "amenities_amenity_id_seq", sequenceName = "AMENITIES_AMENITY_ID_SEQ", allocationSize = 1)
+    @Column(name = "AMENITY_ID")
     private Integer id;
-    @Column(name = "Amenity_name", nullable = false)
+    @Column(name = "AMENITY_NAME", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "amenity")

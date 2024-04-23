@@ -15,10 +15,10 @@ import java.util.List;
 public class Accessibility {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "accessibilites_accessibility_id_seq")
-    @SequenceGenerator(name = "accessibilites_accessibility_id_seq", sequenceName = "accessibilites_accessibility_id_seq", allocationSize = 1)
-    @Column(name = "accessibility_id")
+    @SequenceGenerator(name = "accessibilites_accessibility_id_seq", sequenceName = "ACCESSIBILITES_ACCESSIBILITY_ID_SEQ", allocationSize = 1)
+    @Column(name = "ACCESSIBILITY_ID")
     private Integer id;
-    @Column(name = "accessibility_name", nullable = false)
+    @Column(name = "ACCESSIBILITY_NAME", nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "accessibility")

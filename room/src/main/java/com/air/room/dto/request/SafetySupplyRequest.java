@@ -4,18 +4,18 @@ import com.air.room.global.domain.entity.Room;
 import com.air.room.global.domain.entity.SafetySupply;
 
 public record SafetySupplyRequest(
-        Boolean fireAlram,
+        Boolean fireAlarm,
         Boolean aidKit,
         Boolean extinguisher,
-        Boolean coAlram
+        Boolean coAlarm
 ) {
     public SafetySupply toEntity(Room room) {
         return SafetySupply.builder()
                 .room(room)
-                .fireAlram(fireAlram)
+                .fireAlarm(fireAlarm)
                 .aidKit(aidKit)
                 .extinguisher(extinguisher)
-                .coAlram(coAlram)
+                .coAlarm(coAlarm)
                 .build();
     }
 }

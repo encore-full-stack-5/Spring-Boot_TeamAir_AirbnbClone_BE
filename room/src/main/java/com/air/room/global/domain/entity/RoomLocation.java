@@ -15,16 +15,16 @@ import java.math.BigInteger;
 public class RoomLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_locations_location_id_seq")
-    @SequenceGenerator(name = "room_locations_location_id_seq", sequenceName = "room_locations_location_id_seq", allocationSize = 1)
-    @Column(name = "location_id")
+    @SequenceGenerator(name = "room_locations_location_id_seq", sequenceName = "ROOM_LOCATIONS_LOCATION_ID_SEQ", allocationSize = 1)
+    @Column(name = "LOCATION_ID")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
+    @JoinColumn(name = "ROOM_ID", nullable = false)
     private Room room;
 
-    @Column(name = "location_x", nullable = false)
+    @Column(name = "LOCATION_X", nullable = false)
     private BigDecimal locationX;
-    @Column(name = "location_y", nullable = false)
+    @Column(name = "LOCATION_Y", nullable = false)
     private BigDecimal locationY;
 }

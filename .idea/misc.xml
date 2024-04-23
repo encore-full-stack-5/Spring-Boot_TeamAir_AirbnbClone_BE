@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/comment" />
+    <file type="web" url="file://$PROJECT_DIR$/room" />
     <file type="web" url="file://$PROJECT_DIR$/user" />
     <file type="web" url="file://$PROJECT_DIR$/wishlist" />
   </component>

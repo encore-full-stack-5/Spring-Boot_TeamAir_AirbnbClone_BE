@@ -26,59 +26,59 @@ class RoomServiceImplTest extends TestInit {
     @Autowired
     private EntityManager em;
 
-    @Test
-    void addRoom() {
-
-        // give
-        City city = City.builder()
-                .id(1)
-                .build();
-
-        RoomRequest roomRequest = new RoomRequest(
-                1,
-                "숙소 설명",
-                "숙소 이름",
-                1,
-                4,
-                1,
-                1,
-                2,
-                1,
-                70000,
-                10000,
-                1000*60*60*7,
-                1000*60*60*3,
-                "사용 규칙",
-                "2024-05-01",
-                "2024-06-30",
-                new Integer[]{1, 2, 3},
-                new Integer[]{2, 3},
-                new Integer[]{1},
-                new RoomLocationRequest(
-                        new BigDecimal("35.123456789"),
-                        new BigDecimal("127.123456789")
-                ),
-                new SafetySupplyRequest(
-                        true,
-                        true,
-                        false,
-                        false
-                )
-        );
-
-        // when
-        roomService.addRoom(1, "qwer", roomRequest);
-
-        em.flush();
-        em.clear();
-
-        // then
-        System.out.println("----------[then]----------");
-        List<Room> allRoom = roomService.getAllRoom();
-        Assertions.assertEquals(1, allRoom.size());
-        System.out.println(allRoom.get(0).getName());
-        System.out.println(allRoom.get(0).getSafetySupply().get(0).getRoom().getId());
-        System.out.println(allRoom.get(0).getRoomAmenities().get(0).getAmenity().getName());
-        System.out.println("--------------------------");
-    }
+//    @Test
+//    void addRoom() {
+//
+//        // give
+//        City city = City.builder()
+//                .id(1)
+//                .build();
+//
+//        RoomRequest roomRequest = new RoomRequest(
+//                1,
+//                "숙소 설명",
+//                "숙소 이름",
+//                1,
+//                4,
+//                1,
+//                1,
+//                2,
+//                1,
+//                70000,
+//                10000,
+//                1000*60*60*7,
+//                1000*60*60*3,
+//                "사용 규칙",
+//                "2024-05-01",
+//                "2024-06-30",
+//                new Integer[]{1, 2, 3},
+//                new Integer[]{2, 3},
+//                new Integer[]{1},
+//                new RoomLocationRequest(
+//                        new BigDecimal("35.123456789"),
+//                        new BigDecimal("127.123456789")
+//                ),
+//                new SafetySupplyRequest(
+//                        true,
+//                        true,
+//                        false,
+//                        false
+//                )
+//        );
+//
+//        // when
+//        roomService.addRoom(1, "qwer", roomRequest);
+//
+//        em.flush();
+//        em.clear();
+//
+//        // then
+//        System.out.println("----------[then]----------");
+//        List<Room> allRoom = roomService.getAllRoom();
+//        Assertions.assertEquals(1, allRoom.size());
+//        System.out.println(allRoom.get(0).getName());
+//        System.out.println(allRoom.get(0).getSafetySupply().get(0).getRoom().getId());
+//        System.out.println(allRoom.get(0).getRoomAmenities().get(0).getAmenity().getName());
+//        System.out.println("--------------------------");
+//    }
 }

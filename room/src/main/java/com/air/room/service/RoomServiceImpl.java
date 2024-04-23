@@ -1,6 +1,7 @@
 package com.air.room.service;
 
 import com.air.room.dto.request.RoomRequest;
+import com.air.room.dto.response.RoomInfoAllResponse;
 import com.air.room.exception.NotFoundException;
 import com.air.room.global.domain.entity.*;
 import com.air.room.global.domain.repository.*;
@@ -21,13 +22,15 @@ public class RoomServiceImpl implements RoomService {
     private final RoomUniqueAmenityRepository roomUniqueAmenityRepository;
 
     @Override
-    public List<Room> getAllRoom() {
-        return roomRepository.findAll();
+    public List<RoomInfoAllResponse> getAllRoom() {
+        return roomRepository.findAll().stream().map(RoomInfoAllResponse::from).toList();
     }
 
     @Override
-    public Room getRoomById(Integer id) {
-        return roomRepository.findById(id).orElseThrow(() -> new NotFoundException("ROOM"));
+    public RoomInfoAllResponse getRoomById(Integer id) {
+//        return roomRepository.findById(id).orElseThrow(() -> new NotFoundException("ROOM"));
+        Room room = roomRepository.findById(id).orElseThrow(() -> new NotFoundException("ROOM"));
+        return RoomInfoAllResponse.from(room);
     }
 
     @Override
@@ -73,5 +76,10 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void updateRoom(RoomRequest req) {
 
+    }
+
+    @Override
+    public void deleteRoom(Integer roomId) {
+        roomRepository.deleteById(roomId);
     }
 }

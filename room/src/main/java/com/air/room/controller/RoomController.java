@@ -3,6 +3,7 @@ package com.air.room.controller;
 import com.air.room.config.JwtTokenUtils;
 import com.air.room.config.TokenInfo;
 import com.air.room.dto.request.RoomRequest;
+import com.air.room.dto.response.RoomInfoAllResponse;
 import com.air.room.global.domain.entity.Room;
 import com.air.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +19,12 @@ public class RoomController {
     private final JwtTokenUtils jwtTokenUtils;
 
     @GetMapping
-    public List<Room> getAllRooms() {
+    public List<RoomInfoAllResponse> getAllRooms() {
         return roomService.getAllRoom();
     }
 
     @GetMapping("/{id}")
-    public Room getRoomById(@PathVariable Integer id) {
+    public RoomInfoAllResponse getRoomById(@PathVariable Integer id) {
         return roomService.getRoomById(id);
     }
 
