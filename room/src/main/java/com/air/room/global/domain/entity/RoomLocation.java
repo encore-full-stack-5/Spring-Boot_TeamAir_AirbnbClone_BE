@@ -23,7 +23,7 @@ public class RoomLocation {
     private Room room;
 
     @Column(name = "location_x", nullable = false)
-    private BigInteger locationX;
+    private Long locationX;
     @Column(name = "location_y", nullable = false)
-    private BigInteger locationY;
+    private Long locationY;
 }

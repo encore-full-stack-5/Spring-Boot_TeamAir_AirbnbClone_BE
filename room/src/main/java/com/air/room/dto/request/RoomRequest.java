@@ -1,4 +1,4 @@
-package com.air.room.dto.response;
+package com.air.room.dto.request;
 
 import java.sql.Time;
 import java.time.LocalDate;
@@ -20,6 +20,9 @@ public record RoomRequest(
         Time checkOutTime,
         String usingRule,
         LocalDate reserveStartAt,
-        LocalDate reserveEndAt
+        LocalDate reserveEndAt,
+
+        RoomLocationRequest roomLocationRequest,
+        SafetySupplyRequest safetySupplyRequest
 ) {
 }

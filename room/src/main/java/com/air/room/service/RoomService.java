@@ -1,6 +1,6 @@
 package com.air.room.service;
 
-import com.air.room.dto.response.RoomRequest;
+import com.air.room.dto.request.RoomRequest;
 import com.air.room.global.domain.entity.Room;
 
 import java.util.List;
