@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class Wishlist {
     private Integer id;
     @Column(name = "WISHLIST_NAME", nullable = false)
     private String name;
+    // 유저 추가해야함
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wishlist")
-    private List<Favorate> favorates;
+    private List<Favorite> favorates;
 }
