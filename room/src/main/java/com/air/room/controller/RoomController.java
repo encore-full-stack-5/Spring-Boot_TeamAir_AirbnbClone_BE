@@ -31,6 +31,7 @@ public class RoomController {
     public void createRoom(
             @RequestBody RoomRequest req,
             @RequestHeader("Authorization") String bearerToken) {
+        System.out.println("제발");
         String token = bearerToken.substring(7);
         TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
         roomService.addRoom(tokenInfo.id(), tokenInfo.name(), req);

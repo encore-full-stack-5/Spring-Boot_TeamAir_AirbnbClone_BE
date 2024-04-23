@@ -35,7 +35,7 @@ class RoomServiceImplTest extends TestInit {
                 .build();
 
         RoomRequest roomRequest = new RoomRequest(
-                city,
+                1,
                 "숙소 설명",
                 "숙소 이름",
                 1,
@@ -46,11 +46,11 @@ class RoomServiceImplTest extends TestInit {
                 1,
                 70000,
                 10000,
-                new Time(1000*60*60*7),
-                new Time(1000*60*60*3),
+                1000*60*60*7,
+                1000*60*60*3,
                 "사용 규칙",
-                LocalDate.of(2024,5,1),
-                LocalDate.of(2024,6,30),
+                "2024-05-01",
+                "2024-06-30",
                 new Integer[]{1, 2, 3},
                 new Integer[]{2, 3},
                 new Integer[]{1},

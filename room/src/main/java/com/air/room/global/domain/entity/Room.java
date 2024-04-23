@@ -52,7 +52,7 @@ public class Room {
     @Column(name = "ROOM_bed_num", nullable = false)
     private Integer bedNum;
 
-    @Column(name = "ROOM_bathroom_num", nullable = false)
+    @Column(name = "room_bathroom_num", nullable = false)
     private Integer bathroomNum;
 
     @Column(name = "ROOM_price", nullable = false)
