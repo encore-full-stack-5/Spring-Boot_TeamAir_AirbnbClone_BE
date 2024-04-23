@@ -12,3 +12,6 @@ spring:
       ddl-auto: validate
     show-sql: true
 
+token:
+  secret: qwertyuiopasdfghjklzxcvbnm1234567890
+  expiration: 6000000

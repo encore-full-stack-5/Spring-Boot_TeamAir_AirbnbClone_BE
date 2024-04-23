@@ -5,6 +5,7 @@ import com.air.room.global.domain.entity.Room;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.List;
 
 public record RoomRequest(
         //userid는 토큰으로
@@ -26,12 +27,16 @@ public record RoomRequest(
         LocalDate reserveStartAt,
         LocalDate reserveEndAt,
 
+        Integer[] accessibility,
+        Integer[] amenities,
+        Integer[] uniqueAmenities,
         RoomLocationRequest roomLocationRequest,
         SafetySupplyRequest safetySupplyRequest
 ) {
-    public Room toEntity(Integer userId) {
+    public Room toEntity(Integer userId, String userName) {
         return Room.builder()
                 .userId(userId)
+                .userName(userName)
                 .city(city)
                 .name(name)
                 .desc(desc)

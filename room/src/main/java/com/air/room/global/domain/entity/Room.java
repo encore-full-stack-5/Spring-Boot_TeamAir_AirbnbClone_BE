@@ -24,8 +24,8 @@ public class Room {
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
-//    @Column(name = "user_nickname", nullable = false)
-//    private String userNickname;
+    @Column(name = "user_name", nullable = false)
+    private String userName;
 
     @ManyToOne
     @JoinColumn(name = "city_id")

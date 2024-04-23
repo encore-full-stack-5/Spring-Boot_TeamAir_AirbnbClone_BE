@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RoomService {
     List<Room> getAllRoom();
-    Room getRoomById(Integer id);
-    void addRoom(Integer id, RoomRequest req);
+    Room getRoomById(Integer userId);
+    void addRoom(Integer userId, String userName, RoomRequest req);
     void updateRoom(RoomRequest req);
 }

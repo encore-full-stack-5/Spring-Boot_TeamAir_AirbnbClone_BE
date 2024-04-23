@@ -51,6 +51,9 @@ class RoomServiceImplTest extends TestInit {
                 "사용 규칙",
                 LocalDate.of(2024,5,1),
                 LocalDate.of(2024,6,30),
+                new Integer[]{1, 2, 3},
+                new Integer[]{2, 3},
+                new Integer[]{1},
                 new RoomLocationRequest(
                         new BigDecimal("35.123456789"),
                         new BigDecimal("127.123456789")
@@ -64,16 +67,18 @@ class RoomServiceImplTest extends TestInit {
         );
 
         // when
-        roomService.addRoom(1, roomRequest);
+        roomService.addRoom(1, "qwer", roomRequest);
 
         em.flush();
         em.clear();
 
         // then
+        System.out.println("----------[then]----------");
         List<Room> allRoom = roomService.getAllRoom();
         Assertions.assertEquals(1, allRoom.size());
         System.out.println(allRoom.get(0).getName());
         System.out.println(allRoom.get(0).getSafetySupply().get(0).getRoom().getId());
-        System.out.println(allRoom.get(0).getRoomLocation().get(0).getRoom().getId());
+        System.out.println(allRoom.get(0).getRoomAmenities().get(0).getAmenity().getName());
+        System.out.println("--------------------------");
     }
 }
