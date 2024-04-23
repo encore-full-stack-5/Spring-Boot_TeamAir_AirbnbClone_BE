@@ -88,4 +88,30 @@ public class Room {
 
     @OneToMany(mappedBy = "room")
     private List<SafetySupply> safetySupply;
+
+
+    public void update(Room req) {
+        userName = req.getUserName();
+        city = req.getCity();
+        name = req.getName();
+        desc = req.getDesc();
+        type = req.getType();
+        maxPeople = req.getMaxPeople();
+        reserveOption = req.getReserveOption();
+        bedroomNum = req.getBedroomNum();
+        bedNum = req.getBedNum();
+        bathroomNum = req.getBathroomNum();
+        price = req.getPrice();
+        cleaningPrice = req.getCleaningPrice();
+        checkInTime = req.getCheckInTime();
+        checkOutTime = req.getCheckOutTime();
+        usingRule = req.getUsingRule();
+        reserveStartAt = req.getReserveStartAt();
+        reserveEndAt = req.getReserveEndAt();
+//        roomAccessibility = req.getRoomAccessibility();
+//        roomAmenities = req.getRoomAmenities();
+//        roomUniqueAmenities = req.getRoomUniqueAmenities();
+//        roomLocation = req.getRoomLocation();
+//        safetySupply = req.getSafetySupply();
+    }
 }

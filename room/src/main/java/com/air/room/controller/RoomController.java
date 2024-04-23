@@ -39,6 +39,16 @@ public class RoomController {
         roomService.addRoom(tokenInfo.id(), tokenInfo.name(), req);
     }
 
+    @PutMapping("/{id}")
+    public void updateRoom(
+            @PathVariable Integer id,
+            @RequestBody RoomRequest req,
+            @RequestHeader("Authorization") String bearerToken) {
+        String token = bearerToken.substring(7);
+        TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
+        roomService.updateRoom(id, tokenInfo, req);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteRoomById(@PathVariable Integer id) {
         roomService.deleteRoom(id);

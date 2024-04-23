@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SafetySupplyRepository
         extends JpaRepository<SafetySupply, Integer> {
+
+    SafetySupply findByRoomId(Integer roomId);
 }

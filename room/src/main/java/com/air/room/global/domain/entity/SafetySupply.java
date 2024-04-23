@@ -31,4 +31,11 @@ public class SafetySupply {
 
     @Column(name="SAFETY_CO_ALARM", nullable = false)
     private Boolean coAlarm;
+
+    public void update(SafetySupply req) {
+        fireAlarm = req.fireAlarm;
+        aidKit = req.aidKit;
+        extinguisher = req.extinguisher;
+        coAlarm = req.coAlarm;
+    }
 }

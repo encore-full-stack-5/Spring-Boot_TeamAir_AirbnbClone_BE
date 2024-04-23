@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoomLocationRepository
         extends JpaRepository<RoomLocation, Integer> {
+
+    RoomLocation findByRoomId(Integer roomId);
 }

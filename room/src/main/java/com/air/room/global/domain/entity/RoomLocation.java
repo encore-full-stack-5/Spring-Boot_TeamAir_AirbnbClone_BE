@@ -27,4 +27,9 @@ public class RoomLocation {
     private BigDecimal locationX;
     @Column(name = "LOCATION_Y", nullable = false)
     private BigDecimal locationY;
+
+    public void update(RoomLocation req) {
+        this.locationX = req.getLocationX();
+        this.locationY = req.getLocationY();
+    }
 }
