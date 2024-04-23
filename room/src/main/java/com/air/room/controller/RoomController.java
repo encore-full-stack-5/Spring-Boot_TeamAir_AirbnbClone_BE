@@ -6,6 +6,7 @@ import com.air.room.dto.request.RoomRequest;
 import com.air.room.dto.response.RoomInfoAllResponse;
 import com.air.room.global.domain.entity.Room;
 import com.air.room.service.RoomService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,11 @@ public class RoomController {
         String token = bearerToken.substring(7);
         TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
         roomService.addRoom(tokenInfo.id(), tokenInfo.name(), req);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteRoomById(@PathVariable Integer id) {
+        roomService.deleteRoom(id);
     }
 
     @GetMapping("/test/token")
