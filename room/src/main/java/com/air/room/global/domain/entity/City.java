@@ -14,11 +14,11 @@ import java.util.List;
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cites_city_id_seq")
-    @SequenceGenerator(name = "cites_city_id_seq", sequenceName = "cites_city_id_seq", allocationSize = 1)
-    @Column(name = "city_id")
+    @SequenceGenerator(name = "cites_city_id_seq", sequenceName = "CITES_CITY_ID_SEQ", allocationSize = 1)
+    @Column(name = "CITY_ID")
     private Integer id;
-    @Column(name = "city_code")
+    @Column(name = "CITY_CODE", nullable = false)
     private Integer code;
-    @Column(name = "city_name")
+    @Column(name = "CITY_NAME", nullable = false)
     private String name;
 }

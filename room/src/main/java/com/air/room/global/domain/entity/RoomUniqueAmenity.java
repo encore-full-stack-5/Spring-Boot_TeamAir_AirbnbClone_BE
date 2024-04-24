@@ -12,15 +12,15 @@ import lombok.*;
 public class RoomUniqueAmenity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_unique_amenities_room_unique_amenity_id_seq")
-    @SequenceGenerator(name = "room_unique_amenities_room_unique_amenity_id_seq", sequenceName = "room_unique_amenities_room_unique_amenity_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "room_unique_amenities_room_unique_amenity_id_seq", sequenceName = "ROOM_UNIQUE_AMENITIES_ROOM_UNIQUE_AMENITY_ID_SEQ", allocationSize = 1)
     @Column(name = "ROOM_UNIQUE_AMENITY_ID", columnDefinition = "serial")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "ROOM_ID", nullable = false)
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "UNIQUE_AMENITy_id")
+    @JoinColumn(name = "UNIQUE_AMENITY_ID", nullable = false)
     private UniqueAmenity uniqueAmenity;
 }

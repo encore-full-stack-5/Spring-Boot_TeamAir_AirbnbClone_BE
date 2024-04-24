@@ -15,15 +15,15 @@ import lombok.NoArgsConstructor;
 public class RoomAccessibility {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_accessibilites_room_accessibility_id_seq")
-    @SequenceGenerator(name = "room_accessibilites_room_accessibility_id_seq", sequenceName = "room_accessibilites_room_accessibility_id_seq", allocationSize = 1)
-    @Column(name = "room_accessibility_id")
+    @SequenceGenerator(name = "room_accessibilites_room_accessibility_id_seq", sequenceName = "ROOM_ACCESSIBILITES_ROOM_ACCESSIBILITY_ID_SEQ", allocationSize = 1)
+    @Column(name = "ROOM_ACCESSIBILITY_ID")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "ROOM_ID", nullable = false)
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "accessibility_id")
+    @JoinColumn(name = "ACCESSIBILITY_ID", nullable = false)
     private Accessibility accessibility;
 }

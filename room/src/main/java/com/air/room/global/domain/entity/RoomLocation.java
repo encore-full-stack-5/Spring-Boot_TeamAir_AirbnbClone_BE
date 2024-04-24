@@ -3,6 +3,7 @@ package com.air.room.global.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Entity
@@ -14,16 +15,21 @@ import java.math.BigInteger;
 public class RoomLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_locations_location_id_seq")
-    @SequenceGenerator(name = "room_locations_location_id_seq", sequenceName = "room_locations_location_id_seq", allocationSize = 1)
-    @Column(name = "location_id", nullable = false)
+    @SequenceGenerator(name = "room_locations_location_id_seq", sequenceName = "ROOM_LOCATIONS_LOCATION_ID_SEQ", allocationSize = 1)
+    @Column(name = "LOCATION_ID")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "ROOM_ID", nullable = false)
     private Room room;
 
-    @Column(name = "location_x", nullable = false)
-    private BigInteger locationX;
-    @Column(name = "location_y", nullable = false)
-    private BigInteger locationY;
+    @Column(name = "LOCATION_X", nullable = false)
+    private BigDecimal locationX;
+    @Column(name = "LOCATION_Y", nullable = false)
+    private BigDecimal locationY;
+
+    public void update(RoomLocation req) {
+        this.locationX = req.getLocationX();
+        this.locationY = req.getLocationY();
+    }
 }
