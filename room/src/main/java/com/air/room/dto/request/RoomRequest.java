@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record RoomRequest(
-        //userid는 토큰으로
+        //userid, username은 토큰으로
         Integer cityId,
         String name,
         String desc,
@@ -28,7 +28,6 @@ public record RoomRequest(
         String usingRule,
         String reserveStartAt,
         String reserveEndAt,
-
         Integer[] accessibility,
         Integer[] amenities,
         Integer[] uniqueAmenities,
@@ -56,6 +55,7 @@ public record RoomRequest(
                 usingRule,
                 LocalDate.parse(reserveStartAt, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse(reserveEndAt, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                false,
                 null,
                 null,
                 null,
@@ -85,6 +85,7 @@ public record RoomRequest(
                 usingRule,
                 LocalDate.parse(reserveStartAt, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 LocalDate.parse(reserveEndAt, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                false,
                 null,
                 null,
                 null,

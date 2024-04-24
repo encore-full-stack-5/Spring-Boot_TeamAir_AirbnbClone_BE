@@ -1,5 +1,6 @@
 package com.air.room.controller;
 
+import com.air.room.exception.DisabledArgumentException;
 import com.air.room.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +13,12 @@ public class ExceptionController {
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String notFoundException(NotFoundException e) {
-        return e.getMessage() + "IS NOT FOUND";
+        return e.getMessage() + " IS NOT FOUND";
+    }
+
+    @ExceptionHandler(DisabledArgumentException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String disabledArgumentException(DisabledArgumentException e) {
+        return e.getMessage() + " WAS DISABLED";
     }
 }

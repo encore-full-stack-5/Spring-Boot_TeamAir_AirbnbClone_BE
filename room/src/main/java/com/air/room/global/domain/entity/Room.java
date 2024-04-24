@@ -76,6 +76,9 @@ public class Room {
     @Column(name = "ROOM_RESERVE_END_AT", nullable = false)
     private LocalDate reserveEndAt;
 
+    @Column(name = "ROOM_DISABLE")
+    private Boolean isDisable;
+
     @OneToMany(mappedBy = "room")
     private List<RoomAccessibility> roomAccessibility;
     @OneToMany(mappedBy = "room")
@@ -113,5 +116,9 @@ public class Room {
 //        roomUniqueAmenities = req.getRoomUniqueAmenities();
 //        roomLocation = req.getRoomLocation();
 //        safetySupply = req.getSafetySupply();
+    }
+
+    public void disable() {
+        isDisable = true;
     }
 }

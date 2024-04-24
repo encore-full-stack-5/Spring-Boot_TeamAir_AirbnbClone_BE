@@ -1,84 +1,111 @@
 package com.air.room.service;
 
 import com.air.room.TestInit;
+import com.air.room.config.TokenInfo;
 import com.air.room.dto.request.RoomLocationRequest;
 import com.air.room.dto.request.RoomRequest;
 import com.air.room.dto.request.SafetySupplyRequest;
-import com.air.room.global.domain.entity.City;
-import com.air.room.global.domain.entity.Room;
-import jakarta.persistence.EntityManager;
+import com.air.room.dto.response.RoomInfoAllResponse;
+import com.air.room.exception.DisabledArgumentException;
+import com.air.room.exception.NotFoundException;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
+@Transactional
 class RoomServiceImplTest extends TestInit {
-    @Autowired
-    private RoomService roomService;
-    @Autowired
-    private EntityManager em;
 
-//    @Test
-//    void addRoom() {
-//
-//        // give
-//        City city = City.builder()
-//                .id(1)
-//                .build();
-//
-//        RoomRequest roomRequest = new RoomRequest(
-//                1,
-//                "숙소 설명",
-//                "숙소 이름",
-//                1,
-//                4,
-//                1,
-//                1,
-//                2,
-//                1,
-//                70000,
-//                10000,
-//                1000*60*60*7,
-//                1000*60*60*3,
-//                "사용 규칙",
-//                "2024-05-01",
-//                "2024-06-30",
-//                new Integer[]{1, 2, 3},
-//                new Integer[]{2, 3},
-//                new Integer[]{1},
-//                new RoomLocationRequest(
-//                        new BigDecimal("35.123456789"),
-//                        new BigDecimal("127.123456789")
-//                ),
-//                new SafetySupplyRequest(
-//                        true,
-//                        true,
-//                        false,
-//                        false
-//                )
-//        );
-//
-//        // when
-//        roomService.addRoom(1, "qwer", roomRequest);
-//
-//        em.flush();
-//        em.clear();
-//
-//        // then
-//        System.out.println("----------[then]----------");
-//        List<Room> allRoom = roomService.getAllRoom();
-//        Assertions.assertEquals(1, allRoom.size());
-//        System.out.println(allRoom.get(0).getName());
-//        System.out.println(allRoom.get(0).getSafetySupply().get(0).getRoom().getId());
-//        System.out.println(allRoom.get(0).getRoomAmenities().get(0).getAmenity().getName());
-//        System.out.println("--------------------------");
-//    }
+    @Nested
+    class Tests {
+        @Test
+        void findByRoomId() {
+            System.out.println("--stert test 'findByRoomId'--");
+
+            // give
+            Integer roomId = testRoomIdList.get(0);
+
+            // when
+            RoomInfoAllResponse RoomById = roomService.getRoomById(roomId);
+
+            // then
+            Assertions.assertNotNull(RoomById);
+            Assertions.assertEquals(testRoom1.getName(), RoomById.name());
+
+            System.out.println("--end test 'findByRoomId'--");
+        }
+
+        @Test
+        void deleteByRoomId() {
+            System.out.println("--stert test 'deleteByRoomId'--");
+
+            // give
+            Integer roomId = testRoomIdList.get(0);
+
+            // when
+            roomService.deleteRoom(roomId);
+
+            // then
+            Assertions.assertThrows(DisabledArgumentException.class, () -> {
+                roomService.getRoomById(roomId);
+            });
+
+            System.out.println("--end test 'deleteByRoomId'--");
+        }
+
+        @Test
+        void updateByRoomId() {
+            System.out.println("--stert test 'updateByRoomId'--");
+
+            // give
+            TokenInfo testTokenInfo = new TokenInfo(1, "qwer");
+            RoomRequest roomRequest = new RoomRequest(
+                    1,
+                    "변경된 이름",
+                    "변경된 설명",
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    2,
+                    1000*60*60*(10-9),
+                    1000*60*60*(15-9),
+                    "변경된 규칙",
+                    "2024-04-02",
+                    "2026-01-02",
+                    new Integer[]{1},
+                    new Integer[]{1},
+                    new Integer[]{1},
+                    new RoomLocationRequest(
+                            new BigDecimal("35.2222"),
+                            new BigDecimal("127.2222")
+                    ),
+                    new SafetySupplyRequest(
+                            true,
+                            true,
+                            true,
+                            true
+                    )
+            );
+
+            // when
+            roomService.updateRoom(testRoomIdList.get(1), testTokenInfo, roomRequest);
+
+            // then
+            Assertions.assertNotEquals(testRoom2.getName(), roomRequest.name());
+            Assertions.assertNotEquals(
+                    testRoom2.getRoomAccessibility() == null ? 0 : testRoom2.getRoomAccessibility().size(),
+                    roomRequest.accessibility().length);
+
+            System.out.println("--end test 'updateByRoomId'--");
+        }
+    }
+
 }
