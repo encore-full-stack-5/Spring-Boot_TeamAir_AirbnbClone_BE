@@ -1,16 +1,5 @@
 server:
-  port: 9002
-spring:
-  application:
-    name: room
-  datasource:
-    url: jdbc:postgresql://localhost:5432/reservation?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    username: postgres
-    password: 1234
-  jpa:
-    hibernate:
-      ddl-auto: create
-    show-sql: true
+  port: 9000
 
 eureka:
   client:
@@ -20,4 +9,18 @@ eureka:
     prefer-ip-address: true
     instance-id: room
 
+spring:
+  application:
+    name: room_service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/airbnb_db?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    password: 1234
+    username: airbnb
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
 
+token:
+  secret: qwertyuiopasdfghjklzxcvbnm1234567890
+  expiration: 6000000
