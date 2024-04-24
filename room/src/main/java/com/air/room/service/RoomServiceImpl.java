@@ -1,18 +1,20 @@
 package com.air.room.service;
 
 import com.air.room.config.TokenInfo;
+import com.air.room.dto.SearchRoomDto;
 import com.air.room.dto.request.RoomRequest;
 import com.air.room.dto.response.RoomInfoAllResponse;
 import com.air.room.exception.DisabledArgumentException;
 import com.air.room.exception.NotFoundException;
 import com.air.room.global.domain.entity.*;
 import com.air.room.global.domain.repository.*;
-import com.sun.tools.jconsole.JConsoleContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +40,51 @@ public class RoomServiceImpl implements RoomService {
         if (room.getIsDisable()) throw new DisabledArgumentException("ROOM");
         return RoomInfoAllResponse.from(room);
     }
+
+    @Override
+    public List<RoomInfoAllResponse> getAllRoomByUserId(Integer id) {
+        return roomRepository.findAllByUserId(id).stream()
+                .filter(room -> !room.getIsDisable())
+                .map(RoomInfoAllResponse::from)
+                .toList();
+    }
+
+    @Override
+    public List<RoomInfoAllResponse> searchRoom(SearchRoomDto opt) {
+        Stream<Room> allRoom = roomRepository.findAll().stream();
+
+//        Stream<Room> cityCode = isCityCode(stream, opt.cityCode());
+
+        if (opt.cityCode() != null)
+            allRoom = allRoom.filter(room -> room.getCity().getCode().equals(opt.cityCode()));
+        if (opt.roomType() != null)
+            allRoom = allRoom.filter(room -> room.getType().equals(opt.roomType()));
+        if (opt.personNum() != null)
+            allRoom = allRoom.filter(room -> room.getMaxPeople() >= opt.personNum());
+        if (opt.roomReserve() != null)
+            allRoom = allRoom.filter(room -> room.getReserveOption().equals(opt.roomReserve()));
+        if (opt.bedroomNum() != null)
+            allRoom = allRoom.filter(room -> room.getBedroomNum() >= opt.bedroomNum());
+        if (opt.bedNum() != null)
+            allRoom = allRoom.filter(room -> room.getBedNum() >= opt.bedNum());
+        if (opt.bathroomNum() != null)
+            allRoom = allRoom.filter(room -> room.getType() >= opt.bathroomNum());
+        if (opt.minPrice() != null)
+            allRoom = allRoom.filter(room -> room.getPrice() >= opt.minPrice());
+        if (opt.maxPrice() != null)
+            allRoom = allRoom.filter(room -> room.getPrice() <= opt.maxPrice());
+        //reserveStart
+        //reserveEnd
+
+        return allRoom
+                .filter(room -> !room.getIsDisable())
+                .map(RoomInfoAllResponse::from)
+                .toList();
+    }
+//    private Stream<Room> isCityCode(Stream<Room> stream, Integer cityCode) {
+//        if (cityCode==null) return stream;
+//        return stream.filter(room -> room.getCity().getCode().equals(cityCode));
+//    }
 
     @Override
     @Transactional
