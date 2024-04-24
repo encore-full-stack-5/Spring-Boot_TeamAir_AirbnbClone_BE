@@ -1,11 +1,6 @@
 #spring.application.name=gateway
 server:
   port: 9000
-spring:
-  application:
-    name: gateway
-  cloud:
-    gateway:
       routes:
         - id: reservation
           uri: lb://RESERVATION
@@ -15,6 +10,10 @@ spring:
           uri: lb://ROOM
           predicates:
             - Path=/api/v1/rooms/**
+       - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/v1/user/**
 
 eureka:
   client:

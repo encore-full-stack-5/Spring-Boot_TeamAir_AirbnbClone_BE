@@ -19,6 +19,3 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: reservation
-
-
-
