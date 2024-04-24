@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Spring-Boot_TeamAir_AirbnbClone_BE.iml" filepath="$PROJECT_DIR$/.idea/Spring-Boot_TeamAir_AirbnbClone_BE.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/comment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/comment.main.iml" />
     </modules>
   </component>
 </project>
