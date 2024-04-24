@@ -21,4 +21,8 @@ public class Wishlist {
     // 유저 추가해야함
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wishlist")
     private List<Favorite> favorates;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -4,6 +4,8 @@ package com.air.wishlist.controller;
 import com.air.wishlist.domain.dto.WishlistDto;
 import com.air.wishlist.domain.dto.request.FavoriteRequest;
 import com.air.wishlist.domain.dto.request.WishlistRequest;
+import com.air.wishlist.domain.dto.response.WishlistResponse;
+import com.air.wishlist.domain.entity.Wishlist;
 import com.air.wishlist.service.WishlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,22 +13,44 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @RestController
 @RequestMapping("/api/v1/wishlist")
 @RequiredArgsConstructor
 public class WishlistController {
     private final WishlistService wishlistService;
 
-    @PostMapping
+    @PostMapping("/room")
     public WishlistDto addRoomToWishlist(@RequestBody FavoriteRequest request) {
         return wishlistService.addRoomToWishlist(request);
     }
     @DeleteMapping("/{id}")
-    public void deleteFavorite(@PathVariable("id") int id ){
+    public void deleteWishlist(@PathVariable("id") int id ){
         wishlistService.deleteWishlist(id);
     }
     @PostMapping
     public void addWishlist(@RequestBody WishlistRequest request){
         wishlistService.addWishlist(request);
     }
+    @DeleteMapping("/room/{id}")
+    public void deleteRoomToWishlist(@PathVariable("id") int id){
+        wishlistService.deleteRoomToWishlist(id);
+    }
+
+    @PutMapping("/wishlist/{id}")
+    public void updateWishlistName(@PathVariable("id") int id, @RequestBody String newName) {
+        wishlistService.updateWishlistName(id, newName);
+    }
+    @GetMapping("/wishlistInquiry/{id}")
+    public WishlistResponse wishlistInquiry(@PathVariable("id") int id){
+        return wishlistService.wishlistInquiry(id);
+    }
+
+    @GetMapping()
+    public Wishlist userWishlist(@PathVariable("id") int id, String name){
+
+
+    }
+
 }
