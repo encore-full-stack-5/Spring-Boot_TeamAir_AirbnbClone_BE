@@ -1,5 +1,6 @@
 package com.air.room.service;
 
+import com.air.room.utills.FilterUtils;
 import com.air.room.config.TokenInfo;
 import com.air.room.dto.SearchRoomDto;
 import com.air.room.dto.request.RoomRequest;
@@ -13,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 @Service
@@ -53,8 +53,21 @@ public class RoomServiceImpl implements RoomService {
     public List<RoomInfoAllResponse> searchRoom(SearchRoomDto opt) {
         Stream<Room> allRoom = roomRepository.findAll().stream();
 
-//        Stream<Room> cityCode = isCityCode(stream, opt.cityCode());
+        return allRoom
+                .filter(room -> !room.getIsDisable())
+                .filter(FilterUtils.isCityCodeEqualTo(opt.cityCode()))
+                .filter(FilterUtils.isRoomTypeEqualTo(opt.roomType()))
+                .filter(FilterUtils.isPersonNumMoreOrEqualTo(opt.personNum()))
+                .filter(FilterUtils.isReserveOptionEqualTo(opt.roomReserve()))
+                .filter(FilterUtils.isBedroomNumMoreOrEqualTo(opt.bedroomNum()))
+                .filter(FilterUtils.isBedNumMoreOrEqualTo(opt.bedNum()))
+                .filter(FilterUtils.isBathroomNumMoreOrEqualTo(opt.bathroomNum()))
+                .filter(FilterUtils.isPriceMoreOrEqualTo(opt.minPrice()))
+                .filter(FilterUtils.isPriceLessOrEqualTo(opt.maxPrice()))
+                .map(RoomInfoAllResponse::from)
+                .toList();
 
+        /* before
         if (opt.cityCode() != null)
             allRoom = allRoom.filter(room -> room.getCity().getCode().equals(opt.cityCode()));
         if (opt.roomType() != null)
@@ -68,7 +81,7 @@ public class RoomServiceImpl implements RoomService {
         if (opt.bedNum() != null)
             allRoom = allRoom.filter(room -> room.getBedNum() >= opt.bedNum());
         if (opt.bathroomNum() != null)
-            allRoom = allRoom.filter(room -> room.getType() >= opt.bathroomNum());
+            allRoom = allRoom.filter(room -> room.getBathroomNum() >= opt.bathroomNum());
         if (opt.minPrice() != null)
             allRoom = allRoom.filter(room -> room.getPrice() >= opt.minPrice());
         if (opt.maxPrice() != null)
@@ -80,11 +93,8 @@ public class RoomServiceImpl implements RoomService {
                 .filter(room -> !room.getIsDisable())
                 .map(RoomInfoAllResponse::from)
                 .toList();
+        */
     }
-//    private Stream<Room> isCityCode(Stream<Room> stream, Integer cityCode) {
-//        if (cityCode==null) return stream;
-//        return stream.filter(room -> room.getCity().getCode().equals(cityCode));
-//    }
 
     @Override
     @Transactional
