@@ -1,9 +1,21 @@
 server:
-  port: 9002
+  port: 9003
 spring:
   application:
-    name: reservation_service
+    name: reservation
   datasource:
-    url: jdbc:postgresql://localhost:5432/airbnb_db?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:postgresql://localhost:5432/reservation?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: postgres
     password: 1234
-    username: airbnb
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8765/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: reservation

@@ -15,10 +15,10 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8889/eureka/
+      defaultZone: http://localhost:8765/eureka/
   instance:
     prefer-ip-address: true
-    instance-id: JHSeok
+    instance-id: user
 
 token:
   secret: asjdkfnof4241085931nklasf1n1032nlkdsfmi1m2k2

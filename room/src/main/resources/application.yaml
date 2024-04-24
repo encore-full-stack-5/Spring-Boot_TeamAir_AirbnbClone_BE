@@ -1,5 +1,13 @@
 server:
-  port: 9001
+  port: 9000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8765/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: room
 spring:
   application:
     name: room_service
@@ -7,3 +15,11 @@ spring:
     url: jdbc:postgresql://localhost:5432/airbnb_db?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     password: 1234
     username: airbnb
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+token:
+  secret: qwertyuiopasdfghjklzxcvbnm1234567890
+  expiration: 6000000
