@@ -72,9 +72,9 @@ public class WishlistService {
         return from;
     }
 
-    public WishlistResponse userWishlist(int id, String name){
+    public WishlistDto userWishlist(int id, String name){
         Optional<Wishlist> byId = wishlistRepository.findById(id);
-        Wishlist wishlist = new Wishlist()
-        return  ;
+        Wishlist wishlist = byId.orElseThrow();
+        return new WishlistDto(wishlist.getId(), wishlist.getName());
     }
 }
