@@ -49,8 +49,7 @@ public class WishlistController {
 
     @GetMapping()
     public Wishlist userWishlist(@PathVariable("id") int id, String name){
-
-
+        
     }
 
 }

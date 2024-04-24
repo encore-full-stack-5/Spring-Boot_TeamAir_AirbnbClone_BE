@@ -74,7 +74,7 @@ public class WishlistService {
 
     public WishlistResponse userWishlist(int id, String name){
         Optional<Wishlist> byId = wishlistRepository.findById(id);
-
+        Wishlist wishlist = new Wishlist()
         return  ;
     }
 }
