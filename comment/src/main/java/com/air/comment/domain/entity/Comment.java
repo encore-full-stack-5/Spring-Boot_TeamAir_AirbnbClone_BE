@@ -14,25 +14,26 @@ import java.time.LocalDateTime;
 @Builder
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="COMMENT_ID")
     private Integer commentId;
     @Column(name = "USER_ID")
     private Integer userId;
     @Column(name = "ROOM_ID")
     private Integer roomId;
+    @Column(name = "HOST_ID")
+    private Integer hostId;
     @Column(name = "USER_NAME")
     private String userName;
     @Column(name = "COMMENT_STAR")
-    private double starAvg;
-    @Column(name="COMMENT_CONTENT")
+    private Integer commentStar;
+    @Column(name="COMMENT_CONTENT")@Setter
     private String comment;
     @Column(name="COMMENT_CREATED_AT", columnDefinition = "time with time zone DEFAULT now()")
-    private LocalDate commentCreatedAt;
+    private LocalDateTime commentCreatedAt;
 
-    @OneToOne(mappedBy = "comment")
-    private HostComment hostComment;
+//    @OneToOne
+//    private HostComment hostComment;
 
-    public void setComment(String newComment) {
-    }
+
 }

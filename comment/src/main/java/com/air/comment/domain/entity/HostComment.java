@@ -1,10 +1,7 @@
 package com.air.comment.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -17,24 +14,17 @@ import java.time.LocalDate;
 
 public class HostComment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "USER_ID")
-    private Integer userId;
-    @Column(name = "ROOM_ID")
-    private Integer roomId;
-    @Column(name = "USER_NAME")
-    private String userName;
-    @Column(name = "COMMENT_CONTENT")
-    private String commentContent;
-    @Column(name = "COMMENT_STAR")
-    private Integer commentStar;
-    @Column(name = "COMMENT_CREATED_AT")
-    private LocalDate commentCreatedAt;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "HOST_COMMENT_ID")
+    private Integer hostCommentId;
+    @Column(name = "HOST_NAME")
+    private String hostName;
+    @Column(name = "HOST_COMMENT_CONTENT")@Setter
+    private String hostCommentContent;
+    @Column(name = "HOST_COMMENT_CREATED_AT")
+    private LocalDate hostCommentCreatedAt;
 
-    @OneToOne
-    @JoinColumn(name = "COMMENT_ID")
-    private Comment comment;
+    @Column(name = "COMMENT_ID")
+    private Integer commentId;
 
-    public void setHostcomment(String newHostComment) {
-    }
 }

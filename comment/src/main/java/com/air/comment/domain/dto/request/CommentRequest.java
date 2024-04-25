@@ -7,7 +7,7 @@ public record CommentRequest(
 
         Integer roomId,
 
-        double starAvg,
+        Integer commentStar,
 
         String comment
 

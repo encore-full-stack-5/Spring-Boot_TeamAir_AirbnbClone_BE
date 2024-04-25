@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CommentRepository
         extends JpaRepository<Comment, Integer> {
-    public List<Comment> findAllByRoomId(int roomId);
+    public List<Comment> findAllByRoomId(Integer roomId);
 }

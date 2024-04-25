@@ -4,6 +4,8 @@ import com.air.comment.domain.dto.CommentDto;
 import com.air.comment.domain.entity.Comment;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public record CommentResponse(
         Integer commentId,
 
@@ -13,18 +15,18 @@ public record CommentResponse(
 
         String userName,
 
-        double starAvg,
+        Integer commentStar,
 
         String comment,
 
-        LocalDate commentCreatedAt
+        LocalDateTime commentCreatedAt
 ){
     public static CommentResponse form(Comment comment) {
         return new CommentResponse(comment.getCommentId(),
                 comment.getUserId(),
                 comment.getRoomId(),
                 comment.getUserName(),
-                comment.getStarAvg(),
+                comment.getCommentStar(),
                 comment.getComment(),
                 comment.getCommentCreatedAt());
     }

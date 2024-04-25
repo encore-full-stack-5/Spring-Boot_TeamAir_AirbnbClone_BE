@@ -21,24 +21,24 @@ public class CommentService {
     public void addComment(CommentRequest request){
         Comment comment = Comment.builder()
                 .roomId(request.roomId())
-                .starAvg(request.starAvg())
+                .commentStar(request.commentStar())
                 .comment(request.comment())
                 .build();
         Comment save = commentRepository.save(comment);
     }
 
-    public void deleteComment(int id){
+    public void deleteComment(Integer id){
         commentRepository.deleteById(id);
     }
 
     @Transactional
-    public void editComment(int id, String newComment){
+    public void editComment(Integer id, CommentRequest request){
         Comment comment = commentRepository.findById(id)
                 .orElseThrow();
-        comment.setComment(newComment);
+        comment.setComment(request.comment());
     }
 
-    public List<CommentResponse> loadRoomComment(int roomId){
+    public List<CommentResponse> loadRoomComment(Integer roomId){
         List<Comment> allByRoomId = commentRepository.findAllByRoomId(roomId);
         return allByRoomId.stream().map(CommentResponse::form).toList();
     }

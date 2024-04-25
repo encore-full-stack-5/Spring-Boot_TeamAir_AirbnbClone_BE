@@ -3,12 +3,11 @@ package com.air.comment.domain.dto.request;
 import java.time.LocalDate;
 
 public record HostcommentRequest(
+        Integer commentId,
 
-        Integer roomId,
+        String hostCommentContent,
 
-        String commentContent,
-
-        Integer commentStar
+        String hostName
 
 ) {
 }

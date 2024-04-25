@@ -1,18 +1,22 @@
 package com.air.comment.domain.dto.response;
 
+import com.air.comment.domain.entity.HostComment;
+
 import java.time.LocalDate;
 
 public record HostcommentResponse(
-        Integer userId,
+        Integer hostCommentId,
 
-        Integer roomId,
+        String hostName,
 
-        String userName,
+        String hostCommentContent,
 
-        String commentContent,
-
-        Integer commentStar,
-
-        LocalDate commentCreatedAt
+        LocalDate hostCommentCreatedAt
 ) {
+    public static HostcommentResponse from(HostComment hostComment) {
+        return new HostcommentResponse(hostComment.getHostCommentId(),
+                hostComment.getHostName(),
+                hostComment.getHostCommentContent(),
+                hostComment.getHostCommentCreatedAt());
+    }
 }

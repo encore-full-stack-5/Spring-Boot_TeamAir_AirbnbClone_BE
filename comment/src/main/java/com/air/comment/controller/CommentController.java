@@ -21,17 +21,17 @@ public class CommentController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteComment(@PathVariable("id") int id){
+    public void deleteComment(@PathVariable("id") Integer id){
         commentService.deleteComment(id);
     }
 
     @PutMapping("/edit/{id}")
-    public void editComment(@PathVariable("id") int id, @RequestBody String newComment){
-        commentService.editComment(id, newComment);
+    public void editComment(@PathVariable("id") Integer id, @RequestBody CommentRequest request){
+        commentService.editComment(id, request);
     }
 
     @GetMapping("/load/{roomId}")
-    public List<CommentResponse> loadRoomComment(@PathVariable("roomId") int roomId) {
+    public List<CommentResponse> loadRoomComment(@PathVariable("roomId") Integer roomId) {
         return commentService.loadRoomComment(roomId);
     }
 
