@@ -1,7 +1,5 @@
-package com.air.room.controller;
+package com.air.room.exception;
 
-import com.air.room.exception.DisabledArgumentException;
-import com.air.room.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
