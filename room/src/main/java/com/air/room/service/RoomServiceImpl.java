@@ -1,7 +1,7 @@
 package com.air.room.service;
 
 import com.air.room.utills.FilterUtils;
-import com.air.room.config.TokenInfo;
+import com.air.room.utills.TokenInfo;
 import com.air.room.dto.SearchRoomDto;
 import com.air.room.dto.request.RoomRequest;
 import com.air.room.dto.response.RoomInfoAllResponse;
@@ -52,7 +52,6 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public List<RoomInfoAllResponse> searchRoom(SearchRoomDto opt) {
         Stream<Room> allRoom = roomRepository.findAll().stream();
-
         return allRoom
                 .filter(room -> !room.getIsDisable())
                 .filter(FilterUtils.isCityCodeEqualTo(opt.cityCode()))
@@ -64,36 +63,17 @@ public class RoomServiceImpl implements RoomService {
                 .filter(FilterUtils.isBathroomNumMoreOrEqualTo(opt.bathroomNum()))
                 .filter(FilterUtils.isPriceMoreOrEqualTo(opt.minPrice()))
                 .filter(FilterUtils.isPriceLessOrEqualTo(opt.maxPrice()))
+                .filter(FilterUtils.isRoomAmenitiesContainTo(opt.amenities()))
+                .filter(FilterUtils.isRoomUniqueAmenitiesContainTo(opt.uniqueAmenities()))
+                .filter(FilterUtils.isRoomAccessibilitiesContainTo(opt.accessibilites()))
+                .filter(FilterUtils.isSafetySupplyEqualTo(SafetySupply.builder()
+                        .fireAlarm(opt.fireAlarm())
+                        .aidKit(opt.aidKit())
+                        .extinguisher(opt.extinguisher())
+                        .coAlarm((opt.coAlarm()))
+                        .build()))
                 .map(RoomInfoAllResponse::from)
                 .toList();
-
-        /* before
-        if (opt.cityCode() != null)
-            allRoom = allRoom.filter(room -> room.getCity().getCode().equals(opt.cityCode()));
-        if (opt.roomType() != null)
-            allRoom = allRoom.filter(room -> room.getType().equals(opt.roomType()));
-        if (opt.personNum() != null)
-            allRoom = allRoom.filter(room -> room.getMaxPeople() >= opt.personNum());
-        if (opt.roomReserve() != null)
-            allRoom = allRoom.filter(room -> room.getReserveOption().equals(opt.roomReserve()));
-        if (opt.bedroomNum() != null)
-            allRoom = allRoom.filter(room -> room.getBedroomNum() >= opt.bedroomNum());
-        if (opt.bedNum() != null)
-            allRoom = allRoom.filter(room -> room.getBedNum() >= opt.bedNum());
-        if (opt.bathroomNum() != null)
-            allRoom = allRoom.filter(room -> room.getBathroomNum() >= opt.bathroomNum());
-        if (opt.minPrice() != null)
-            allRoom = allRoom.filter(room -> room.getPrice() >= opt.minPrice());
-        if (opt.maxPrice() != null)
-            allRoom = allRoom.filter(room -> room.getPrice() <= opt.maxPrice());
-        //reserveStart
-        //reserveEnd
-
-        return allRoom
-                .filter(room -> !room.getIsDisable())
-                .map(RoomInfoAllResponse::from)
-                .toList();
-        */
     }
 
     @Override
@@ -107,36 +87,6 @@ public class RoomServiceImpl implements RoomService {
 
         SafetySupply safetySupply = req.safetySupplyRequest().toEntity(room);
         safetySupplyRepository.save(safetySupply);
-
-        /*for(Integer id : req.accessibility()){
-            RoomAccessibility roomAccessibility = RoomAccessibility.builder()
-                    .room(room)
-                    .accessibility(Accessibility.builder()
-                            .id(id)
-                            .build())
-                    .build();
-            roomAccessibilityRepository.save(roomAccessibility);
-        }
-
-        for(Integer id : req.amenities()){
-            RoomAmenity roomAmenity = RoomAmenity.builder()
-                    .room(room)
-                    .amenity(Amenity.builder()
-                            .id(id)
-                            .build())
-                    .build();
-            roomAmenityRepository.save(roomAmenity);
-        }
-
-        for(Integer id : req.uniqueAmenities()){
-            RoomUniqueAmenity roomUniqueAmenity = RoomUniqueAmenity.builder()
-                    .room(room)
-                    .uniqueAmenity(UniqueAmenity.builder()
-                            .id(id)
-                            .build())
-                    .build();
-            roomUniqueAmenityRepository.save(roomUniqueAmenity);
-        }*/
 
         roomAccessibilityRepository.saveAll(req.getRoomAccessibilityList(room));
         roomAmenityRepository.saveAll(req.getRoomAmenityList(room));
@@ -168,25 +118,6 @@ public class RoomServiceImpl implements RoomService {
         roomAccessibilityRepository.deleteAllById(req.getDeleteRoomAccessibilityByIdList(room));
         roomAccessibilityRepository.saveAll(req.getAddRoomAccessibilityList(room));
 
-        /*List<Integer> roomReqAccessibility = roomReq.getRoomAccessibility().stream().map(
-                e -> e.getAccessibility().getId()).toList();
-        room.getRoomAccessibility().forEach(e -> {
-            if(!roomReqAccessibility.contains(e.getAccessibility().getId())) {
-                roomAmenityRepository.deleteById(e.getId());
-            }
-        });
-        List<Integer> roomAccessibility = room.getRoomAccessibility().stream().map(
-                e -> e.getAccessibility().getId()).toList();
-        roomReq.getRoomAccessibility().forEach(e -> {
-            if(!roomAccessibility.contains(e.getAccessibility().getId())) {
-                roomAmenityRepository.save(RoomAmenity.builder()
-                        .room(room)
-                        .amenity(Amenity.builder()
-                                .id(e.getAccessibility().getId())
-                                .build())
-                        .build());
-            }
-        });*/
     }
 
     @Override

@@ -1,8 +1,9 @@
 package com.air.room.utills;
 
 
-import com.air.room.global.domain.entity.Room;
+import com.air.room.global.domain.entity.*;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class FilterUtils {
@@ -33,5 +34,30 @@ public class FilterUtils {
     }
     public static Predicate<Room> isPriceLessOrEqualTo(Integer price) {
         return p -> price == null || p.getPrice() <= price;
+    }
+    public static Predicate<Room> isRoomAmenitiesContainTo(Integer[] amenity) {
+        return p -> amenity == null || p.getRoomAmenities().stream()
+                .map(RoomAmenity::getId)
+                .filter(e -> Arrays.stream(amenity).toList().contains(e))
+                .toList().size() == amenity.length;
+    }
+    public static Predicate<Room> isRoomUniqueAmenitiesContainTo(Integer[] uniqueAmenity) {
+        return p -> uniqueAmenity == null || p.getRoomUniqueAmenities().stream()
+                .map(RoomUniqueAmenity::getId)
+                .filter(e -> Arrays.stream(uniqueAmenity).toList().contains(e))
+                .toList().size() == uniqueAmenity.length;
+    }
+    public static Predicate<Room> isRoomAccessibilitiesContainTo(Integer[] accessibility) {
+        return p -> accessibility == null || p.getRoomAccessibility().stream()
+                .map(RoomAccessibility::getId)
+                .filter(e -> Arrays.stream(accessibility).toList().contains(e))
+                .toList().size() == accessibility.length;
+    }
+    public static Predicate<Room> isSafetySupplyEqualTo(SafetySupply safetySupply) {
+        return p ->
+                (safetySupply.getFireAlarm() == null || p.getSafetySupply().get(0).getFireAlarm()) &&
+                (safetySupply.getAidKit() == null || p.getSafetySupply().get(0).getAidKit()) &&
+                (safetySupply.getExtinguisher() == null || p.getSafetySupply().get(0).getExtinguisher()) &&
+                (safetySupply.getCoAlarm() == null || p.getSafetySupply().get(0).getCoAlarm());
     }
 }

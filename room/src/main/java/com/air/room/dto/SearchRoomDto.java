@@ -16,6 +16,13 @@ public record SearchRoomDto (
         Integer minPrice,
         Integer maxPrice,
         LocalDate reserveStart,
-        LocalDate reserveEnd
+        LocalDate reserveEnd,
+        Integer[] amenities,
+        Integer[] uniqueAmenities,
+        Integer[] accessibilites,
+        Boolean fireAlarm,
+        Boolean aidKit,
+        Boolean extinguisher,
+        Boolean coAlarm
 ){
 }

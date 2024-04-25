@@ -1,15 +1,12 @@
 package com.air.room.controller;
 
-import com.air.room.config.JwtTokenUtils;
-import com.air.room.config.TokenInfo;
+import com.air.room.utills.JwtTokenUtils;
+import com.air.room.utills.TokenInfo;
 import com.air.room.dto.SearchRoomDto;
 import com.air.room.dto.request.RoomRequest;
 import com.air.room.dto.response.RoomInfoAllResponse;
-import com.air.room.global.domain.entity.Room;
 import com.air.room.service.RoomService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.cglib.core.Local;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -50,7 +47,14 @@ public class RoomController {
             @RequestParam Optional<Integer> minPrice,
             @RequestParam Optional<Integer> maxPrice,
             @RequestParam Optional<LocalDate> reserveStart,
-            @RequestParam Optional<LocalDate> reserveEnd
+            @RequestParam Optional<LocalDate> reserveEnd,
+            @RequestParam Optional<Integer[]> amenities,
+            @RequestParam Optional<Integer[]> uniqueAmenities,
+            @RequestParam Optional<Integer[]> accessibilites,
+            @RequestParam Optional<Boolean> fireAlarm,
+            @RequestParam Optional<Boolean> aidKit,
+            @RequestParam Optional<Boolean> extinguisher,
+            @RequestParam Optional<Boolean> coAlarm
     ) {
         return roomService.searchRoom(SearchRoomDto.builder()
                 .cityCode(cityCode.orElse(null))
@@ -64,6 +68,13 @@ public class RoomController {
                 .maxPrice(maxPrice.orElse(null))
                 .reserveStart(reserveStart.orElse(null))
                 .reserveEnd(reserveEnd.orElse(null))
+                .amenities(amenities.orElse(null))
+                .uniqueAmenities(uniqueAmenities.orElse(null))
+                .accessibilites(accessibilites.orElse(null))
+                .fireAlarm(fireAlarm.orElse(null))
+                .aidKit(aidKit.orElse(null))
+                .extinguisher(extinguisher.orElse(null))
+                .coAlarm(coAlarm.orElse(null))
                 .build()
         );
     }
