@@ -7,10 +7,10 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: reservation
-          uri: lb://RESERVATION
-          predicates:
-            - Path=/api/reserve/**
+#        - id: reservation
+#          uri: lb://RESERVATION
+#          predicates:
+#            - Path=/api/reserve/**
         - id: room
           uri: lb://ROOM
           predicates:
