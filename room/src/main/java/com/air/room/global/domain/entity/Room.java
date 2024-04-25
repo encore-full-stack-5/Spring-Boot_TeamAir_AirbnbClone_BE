@@ -86,11 +86,11 @@ public class Room {
     @OneToMany(mappedBy = "room")
     private List<RoomUniqueAmenity> roomUniqueAmenities;
 
-    @OneToMany(mappedBy = "room")
-    private List<RoomLocation> roomLocation;
+    @OneToOne(mappedBy = "room")
+    private RoomLocation roomLocation;
 
-    @OneToMany(mappedBy = "room")
-    private List<SafetySupply> safetySupply;
+    @OneToOne(mappedBy = "room")
+    private SafetySupply safetySupply;
 
 
     public void update(Room req) {

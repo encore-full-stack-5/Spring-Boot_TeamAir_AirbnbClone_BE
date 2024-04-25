@@ -1,11 +1,10 @@
 package com.air.room;
 
-import com.air.room.config.JwtTokenUtils;
+import com.air.room.utills.JwtTokenUtils;
 import com.air.room.dto.request.RoomLocationRequest;
 import com.air.room.dto.request.RoomRequest;
 import com.air.room.dto.request.SafetySupplyRequest;
 import com.air.room.global.domain.entity.Room;
-import com.air.room.global.domain.entity.RoomAccessibility;
 import com.air.room.global.domain.entity.RoomLocation;
 import com.air.room.global.domain.entity.SafetySupply;
 import com.air.room.global.domain.repository.*;

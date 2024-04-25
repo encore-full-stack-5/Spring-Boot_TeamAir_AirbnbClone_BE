@@ -19,7 +19,7 @@ public class RoomLocation {
     @Column(name = "LOCATION_ID")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ROOM_ID", nullable = false)
     private Room room;
 
