@@ -30,6 +30,9 @@ public class Comment {
     @Column(name="COMMENT_CREATED_AT", columnDefinition = "time with time zone DEFAULT now()")
     private LocalDate commentCreatedAt;
 
+    @OneToOne(mappedBy = "comment")
+    private HostComment hostComment;
+
     public void setComment(String newComment) {
     }
 }

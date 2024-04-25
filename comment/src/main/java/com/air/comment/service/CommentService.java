@@ -18,20 +18,13 @@ import java.util.Optional;
 public class CommentService {
     private final CommentRepository commentRepository;
 
-    public CommentDto addComment(CommentRequest request){
+    public void addComment(CommentRequest request){
         Comment comment = Comment.builder()
-                .commentId(request.commentId())
-                .userId(request.userId())
                 .roomId(request.roomId())
-                .userName(request.userName())
                 .starAvg(request.starAvg())
                 .comment(request.comment())
-                .commentCreatedAt(request.commentCreatedAt())
                 .build();
         Comment save = commentRepository.save(comment);
-        return new CommentDto(save.getCommentId(), save.getUserId(),
-                save.getRoomId(), save.getUserName(),
-                save.getStarAvg(), save.getComment(), save.getCommentCreatedAt());
     }
 
     public void deleteComment(int id){
