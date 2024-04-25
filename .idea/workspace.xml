@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="80349624-5d34-41af-a3b7-98ac1bef58d5" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/HostCommentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/request/CommentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/request/CommentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/HostComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/HostComment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/service/CommentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,6 +253,12 @@
           <url>file://$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/Comment.java</url>
           <line>11</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/Comment.java</url>
+          <line>20</line>
+          <properties field="userId" class="com.air.comment.domain.entity.Comment" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
