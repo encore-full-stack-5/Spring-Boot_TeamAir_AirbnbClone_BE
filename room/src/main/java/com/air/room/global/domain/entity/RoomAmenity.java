@@ -16,7 +16,7 @@ public class RoomAmenity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_amenities_room_amenity_id_seq")
     @SequenceGenerator(name = "room_amenities_room_amenity_id_seq", sequenceName = "ROOM_AMENITIES_ROOM_AMENITY_ID_SEQ", allocationSize = 1)
-    @Column(name = "ROOM_AMENITY_id", columnDefinition = "serial")
+    @Column(name = "ROOM_AMENITY_ID", columnDefinition = "serial")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,6 +24,6 @@ public class RoomAmenity {
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "AMENITY_id", nullable = false)
+    @JoinColumn(name = "AMENITY_ID", nullable = false)
     private Amenity amenity;
 }

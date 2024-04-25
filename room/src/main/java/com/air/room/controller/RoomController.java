@@ -1,10 +1,11 @@
 package com.air.room.controller;
 
+import com.air.room.dto.response.RoomSimpleInfoResponse;
 import com.air.room.utills.JwtTokenUtils;
 import com.air.room.utills.TokenInfo;
 import com.air.room.dto.SearchRoomDto;
 import com.air.room.dto.request.RoomRequest;
-import com.air.room.dto.response.RoomInfoAllResponse;
+import com.air.room.dto.response.RoomAllInfoResponse;
 import com.air.room.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,22 +22,22 @@ public class RoomController {
     private final JwtTokenUtils jwtTokenUtils;
 
     @GetMapping
-    public List<RoomInfoAllResponse> getAllRooms() {
+    public List<RoomSimpleInfoResponse> getAllRooms() {
         return roomService.getAllRoom();
     }
 
     @GetMapping("/{id}")
-    public RoomInfoAllResponse getRoomById(@PathVariable Integer id) {
+    public RoomAllInfoResponse getRoomById(@PathVariable Integer id) {
         return roomService.getRoomById(id);
     }
 
     @GetMapping("/host/{id}")
-    public List<RoomInfoAllResponse> getRoomByHostId(@PathVariable Integer id) {
+    public List<RoomSimpleInfoResponse> getRoomByHostId(@PathVariable Integer id) {
         return roomService.getAllRoomByUserId(id);
     }
 
     @GetMapping("/search")
-    public List<RoomInfoAllResponse> getRoomBySearch(
+    public List<RoomSimpleInfoResponse> getRoomBySearch(
             @RequestParam Optional<Integer> cityCode,
             @RequestParam Optional<Integer> roomType,
             @RequestParam Optional<Integer> personNum,
@@ -102,11 +103,6 @@ public class RoomController {
     @DeleteMapping("/{id}")
     public void deleteRoomById(@PathVariable Integer id) {
         roomService.deleteRoom(id);
-    }
-
-    @GetMapping("/test/token")
-    public String testToken() {
-        return jwtTokenUtils.createToken(1,"qwer");
     }
 
 }

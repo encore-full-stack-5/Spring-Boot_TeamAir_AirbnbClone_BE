@@ -55,9 +55,9 @@ public class FilterUtils {
     }
     public static Predicate<Room> isSafetySupplyEqualTo(SafetySupply safetySupply) {
         return p ->
-                (safetySupply.getFireAlarm() == null || p.getSafetySupply().get(0).getFireAlarm()) &&
-                (safetySupply.getAidKit() == null || p.getSafetySupply().get(0).getAidKit()) &&
-                (safetySupply.getExtinguisher() == null || p.getSafetySupply().get(0).getExtinguisher()) &&
-                (safetySupply.getCoAlarm() == null || p.getSafetySupply().get(0).getCoAlarm());
+                (safetySupply.getFireAlarm() == null || p.getSafetySupply().getFireAlarm()) &&
+                (safetySupply.getAidKit() == null || p.getSafetySupply().getAidKit()) &&
+                (safetySupply.getExtinguisher() == null || p.getSafetySupply().getExtinguisher()) &&
+                (safetySupply.getCoAlarm() == null || p.getSafetySupply().getCoAlarm());
     }
 }

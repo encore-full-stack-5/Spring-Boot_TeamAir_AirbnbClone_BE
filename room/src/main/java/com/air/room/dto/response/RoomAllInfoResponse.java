@@ -7,7 +7,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.List;
 
-public record RoomInfoAllResponse (
+public record RoomAllInfoResponse(
         Integer id,
         Integer userId,
         String userName,
@@ -33,7 +33,7 @@ public record RoomInfoAllResponse (
         RoomLocationDto location,
         SafetySupplyDto safetySupply
 ){
-    public static RoomInfoAllResponse from(Room room) {
+    public static RoomAllInfoResponse from(Room room) {
         List<RoomAccessibilityDto> accessibility = room.getRoomAccessibility().isEmpty() ? null :
                 room.getRoomAccessibility().stream().map(
                 roomAccessibility -> new RoomAccessibilityDto(
@@ -52,17 +52,17 @@ public record RoomInfoAllResponse (
                         roomAccessibility.getId(),
                         roomAccessibility.getUniqueAmenity().getName())
         ).toList();
-        RoomLocationDto location = room.getRoomLocation().isEmpty() ? null : new RoomLocationDto(
-                room.getRoomLocation().get(0).getLocationX(),
-                room.getRoomLocation().get(0).getLocationY()
+        RoomLocationDto location = room.getRoomLocation() == null ? null : new RoomLocationDto(
+                room.getRoomLocation().getLocationX(),
+                room.getRoomLocation().getLocationY()
         );
-        SafetySupplyDto safetySupply = room.getSafetySupply().isEmpty() ? null : new SafetySupplyDto(
-                room.getSafetySupply().get(0).getFireAlarm(),
-                room.getSafetySupply().get(0).getAidKit(),
-                room.getSafetySupply().get(0).getExtinguisher(),
-                room.getSafetySupply().get(0).getCoAlarm()
+        SafetySupplyDto safetySupply = room.getSafetySupply() == null ? null : new SafetySupplyDto(
+                room.getSafetySupply().getFireAlarm(),
+                room.getSafetySupply().getAidKit(),
+                room.getSafetySupply().getExtinguisher(),
+                room.getSafetySupply().getCoAlarm()
         );
-        return new RoomInfoAllResponse(
+        return new RoomAllInfoResponse(
                 room.getId(),
                 room.getUserId(),
                 room.getUserName(),
