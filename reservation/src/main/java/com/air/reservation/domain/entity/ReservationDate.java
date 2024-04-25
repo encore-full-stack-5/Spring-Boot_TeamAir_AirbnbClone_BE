@@ -22,10 +22,7 @@ public class ReservationDate {
     @Setter
     private String day;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reservation_id")
     private Reservation reservation;
-//    @Column(name = "user_id")
-//    private Long userId;
-//    @Column(name = "room_id")
-//    private Long roomId;
 }
 

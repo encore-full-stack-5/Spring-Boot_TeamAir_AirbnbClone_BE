@@ -4,9 +4,11 @@ import com.air.reservation.domain.dto.request.CreateDateRequest;
 import com.air.reservation.domain.dto.request.CreateRequest;
 import com.air.reservation.domain.dto.request.UpdateRequest;
 import com.air.reservation.domain.dto.response.ReadResponse;
+import com.air.reservation.domain.entity.Reservation;
 import com.air.reservation.domain.entity.ReservationDate;
 import com.air.reservation.service.ReservationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,19 +19,22 @@ import java.util.List;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    @GetMapping
-    public String messageAccess() {
-        return "fuck you";
+    @PostMapping("/create/{id}")
+    public void createReservation(@RequestBody CreateRequest req,
+                                  @PathVariable("id") Long roomId,
+                                  @RequestParam("check_in") String startDate,
+                                  @RequestParam("check_out") String endDate) {
+        reservationService.create(req, roomId, startDate, endDate);
     }
 
-    @PostMapping("/create")
-    public void createReservation(@RequestBody CreateRequest req) {
-        reservationService.create(req);
+    @PostMapping("/date/create/{id}")
+    public List<ReservationDate> createReservationDate(@RequestBody CreateDateRequest req, @PathVariable("id") Long roomId) {
+        return reservationService.createReservationDate(req, roomId);
     }
 
-    @PostMapping("/date/create")
-    public List<ReservationDate> createReservationDate(@RequestBody CreateDateRequest req) {
-        return reservationService.createReservationDate(req);
+    @GetMapping("/user/reservation/{id}")
+    public List<ReadResponse> getByReservationToUser(@PathVariable("id") Long userId) {
+        return reservationService.getByReservationToUser(userId);
     }
 
     @GetMapping("/{id}")

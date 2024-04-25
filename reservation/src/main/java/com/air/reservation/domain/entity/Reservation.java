@@ -20,19 +20,24 @@ public class Reservation {
     private Integer guestCount;
     @Column(name = "check_in")
     @Setter
-    private LocalDate startDate;
+    private String startDate;
     @Column(name = "check_out")
     @Setter
-    private LocalDate endDate;
-    @Column(name = "reserve_status")
-    @ColumnDefault("false")
-    private boolean reserveStatus;
+    private String endDate;
     @Column(name = "message")
     @Setter
     private String message;
     @Column()
     @Setter
     private Integer total_money;
+    @Column()
+    @Setter
+    private String status;
     @OneToMany
+    @Setter
     private List<ReservationDate> reservationDates;
+    @Column(name = "room_id")
+    private Long roomId;
+    @Column(name = "user_id")
+    private Long userId;
 }
