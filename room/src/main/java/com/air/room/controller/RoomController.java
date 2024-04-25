@@ -105,4 +105,9 @@ public class RoomController {
         roomService.deleteRoom(id);
     }
 
+    @DeleteMapping("/host{id}")
+    public void deleteRoomByUserId(@PathVariable Integer id) {
+        roomService.deleteRoomByUserId(id);
+    }
+
 }

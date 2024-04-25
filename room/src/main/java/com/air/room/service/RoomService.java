@@ -16,4 +16,5 @@ public interface RoomService {
     void addRoom(Integer userId, String userName, RoomRequest req);
     void updateRoom(Integer roomId, TokenInfo tokenInfo, RoomRequest req);
     void deleteRoom(Integer roomId);
+    void deleteRoomByUserId(Integer userId);
 }

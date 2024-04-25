@@ -134,4 +134,11 @@ public class RoomServiceImpl implements RoomService {
         room.disable();
     }
 
+    @Override
+    public void deleteRoomByUserId(Integer userId) {
+        List<Room> rooms = roomRepository.findAllRoomByUserIdOnJPQL(userId);
+        if (rooms == null) throw new NotFoundException("ROOM BY USER ID");
+        rooms.forEach(Room::disable);
+    }
+
 }
