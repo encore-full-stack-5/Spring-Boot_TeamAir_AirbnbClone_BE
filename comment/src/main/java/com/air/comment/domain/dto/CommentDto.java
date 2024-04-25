@@ -1,10 +1,21 @@
 package com.air.comment.domain.dto;
 
+import java.time.LocalDate;
+
 public record CommentDto(
-        Integer id,
+        Integer commentId,
+
+        Integer userId,
+
+        Integer roomId,
+
         String userName,
+
         double starAvg,
-        String comment
+
+        String comment,
+
+        LocalDate commentCreatedAt
         ) {
 
 }

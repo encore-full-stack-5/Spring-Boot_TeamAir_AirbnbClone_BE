@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="80349624-5d34-41af-a3b7-98ac1bef58d5" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/CommentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/request/CommentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/dto/request/CommentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/HostComment.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/entity/HostComment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/domain/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comment/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/resources/application.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/comment">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/reservation">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/room">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/user">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/wishlist">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="comment" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Record" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2fRO7yac7nQvUssyrtxGFk5ocPF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.WishlistServiceTest.addWishlist.executor": "Run",
+    "Gradle.WishlistServiceTest.deleteRoomToWishlist.executor": "Run",
+    "Gradle.WishlistServiceTest.deleteWishlist.executor": "Run",
+    "Gradle.comment [:CommentApplication.main()].executor": "Run",
+    "Gradle.wishlist [:WishlistApplication.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "feature/wishlist",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Spring-Boot_TeamAir_AirbnbClone_BE/reservation",
+    "project.structure.last.edited": "프로젝트",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "애플리케이션.CommentApplication.executor": "Run"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.air.wishlist.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="애플리케이션.CommentApplication">
+    <configuration name="CommentApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.air.comment.CommentApplication" />
+      <module name="comment.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.air.comment.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WishlistApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.air.wishlist.WishlistApplication" />
+      <module name="wishlist.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.air.wishlist.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WishlistServiceTest.addWishlist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/wishlist" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.air.wishlist.service.WishlistServiceTest.addWishlist&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WishlistServiceTest.deleteRoomToWishlist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/wishlist" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.air.wishlist.service.WishlistServiceTest.deleteRoomToWishlist&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="WishlistServiceTest.deleteWishlist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/wishlist" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.air.wishlist.service.WishlistServiceTest.deleteWishlist&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="애플리케이션.CommentApplication" />
+        <item itemvalue="Gradle.WishlistServiceTest.deleteRoomToWishlist" />
+        <item itemvalue="Gradle.WishlistServiceTest.deleteWishlist" />
+        <item itemvalue="Gradle.WishlistServiceTest.addWishlist" />
+        <item itemvalue="애플리케이션.WishlistApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-51586f01" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="80349624-5d34-41af-a3b7-98ac1bef58d5" name="변경" comment="" />
+      <created>1713760260984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713760260984</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/wishlist/src/test/java/com/air/wishlist/service/WishlistServiceTest.java</url>
+          <line>34</line>
+          <properties class="com.air.wishlist.service.WishlistServiceTest" method="addWishlist">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/wishlist/src/main/java/com/air/wishlist/controller/WishlistController.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
