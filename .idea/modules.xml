@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Spring-Boot_TeamAir_AirbnbClone_BE.iml" filepath="$PROJECT_DIR$/.idea/Spring-Boot_TeamAir_AirbnbClone_BE.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/comment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/comment.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/wishlist.main.iml" filepath="$PROJECT_DIR$/.idea/modules/wishlist.main.iml" />
+    </modules>
+  </component>
+</project>

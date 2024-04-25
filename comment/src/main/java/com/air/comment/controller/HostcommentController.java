@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/host")
+@RequestMapping("/api/v1/comment/host")
 @RequiredArgsConstructor
 
 public class HostcommentController {
@@ -36,5 +36,9 @@ public class HostcommentController {
     @GetMapping("/{commentId}")
     public List<HostcommentResponse> loadHostComment(@PathVariable("commentId") String hostName){
         return hostcommentService.loadHostComment(hostName);
+    }
+    @GetMapping("/test")
+    public String test(){
+        return "tttttt";
     }
 }
