@@ -16,7 +16,11 @@ spring:
             allowed-origins: "*"
             allowed-headers: "*"
       routes:
-        - id: ROOM-SERVICE
+        - id: reservation
+          uri: lb://RESERVATION
+          predicates:
+            - Path=/api/reserve/**
+        - id: room
           uri: lb://ROOM
           predicates:
             - Path=/api/v1/rooms/**
