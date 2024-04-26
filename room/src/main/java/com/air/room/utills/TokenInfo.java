@@ -1,4 +1,4 @@
-package com.air.room.config;
+package com.air.room.utills;
 
 import io.jsonwebtoken.Claims;
 

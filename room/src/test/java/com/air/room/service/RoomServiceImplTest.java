@@ -1,13 +1,12 @@
 package com.air.room.service;
 
 import com.air.room.TestInit;
-import com.air.room.config.TokenInfo;
+import com.air.room.utills.TokenInfo;
 import com.air.room.dto.request.RoomLocationRequest;
 import com.air.room.dto.request.RoomRequest;
 import com.air.room.dto.request.SafetySupplyRequest;
-import com.air.room.dto.response.RoomInfoAllResponse;
+import com.air.room.dto.response.RoomAllInfoResponse;
 import com.air.room.exception.DisabledArgumentException;
-import com.air.room.exception.NotFoundException;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
@@ -30,7 +29,7 @@ class RoomServiceImplTest extends TestInit {
             Integer roomId = testRoomIdList.get(0);
 
             // when
-            RoomInfoAllResponse RoomById = roomService.getRoomById(roomId);
+            RoomAllInfoResponse RoomById = roomService.getRoomById(roomId);
 
             // then
             Assertions.assertNotNull(RoomById);

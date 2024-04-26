@@ -1,18 +1,21 @@
 package com.air.room.service;
 
-import com.air.room.config.TokenInfo;
+import com.air.room.dto.response.RoomSimpleInfoResponse;
+import com.air.room.utills.FilterUtils;
+import com.air.room.utills.TokenInfo;
+import com.air.room.dto.SearchRoomDto;
 import com.air.room.dto.request.RoomRequest;
-import com.air.room.dto.response.RoomInfoAllResponse;
+import com.air.room.dto.response.RoomAllInfoResponse;
 import com.air.room.exception.DisabledArgumentException;
 import com.air.room.exception.NotFoundException;
 import com.air.room.global.domain.entity.*;
 import com.air.room.global.domain.repository.*;
-import com.sun.tools.jconsole.JConsoleContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -25,18 +28,55 @@ public class RoomServiceImpl implements RoomService {
     private final RoomUniqueAmenityRepository roomUniqueAmenityRepository;
 
     @Override
-    public List<RoomInfoAllResponse> getAllRoom() {
-        return roomRepository.findAll().stream()
+    public List<RoomSimpleInfoResponse> getAllRoom() {
+        return roomRepository.findAllRoomOnJPQL().stream()
                 .filter(room -> !room.getIsDisable())
-                .map(RoomInfoAllResponse::from)
+                .map(RoomSimpleInfoResponse::from)
                 .toList();
     }
 
     @Override
-    public RoomInfoAllResponse getRoomById(Integer id) {
-        Room room = roomRepository.findById(id).orElseThrow(() -> new NotFoundException("ROOM"));
+    public RoomAllInfoResponse getRoomById(Integer id) {
+//        Room room = roomRepository.findRoomByRoomIdOnJPQL(id).orElseThrow(() -> new NotFoundException("ROOM"));
+        Room room = roomRepository.findRoomByRoomIdOnJPQL(id);
+        if (room == null) throw new NotFoundException("ROOM");
         if (room.getIsDisable()) throw new DisabledArgumentException("ROOM");
-        return RoomInfoAllResponse.from(room);
+        return RoomAllInfoResponse.from(room);
+    }
+
+    @Override
+    public List<RoomSimpleInfoResponse> getAllRoomByUserId(Integer id) {
+        return roomRepository.findAllRoomByUserIdOnJPQL(id).stream()
+                .filter(room -> !room.getIsDisable())
+                .map(RoomSimpleInfoResponse::from)
+                .toList();
+    }
+
+    @Override
+    public List<RoomSimpleInfoResponse> searchRoom(SearchRoomDto opt) {
+        Stream<Room> allRoom = roomRepository.findAllRoomOnJPQL().stream();
+        return allRoom
+                .filter(room -> !room.getIsDisable())
+                .filter(FilterUtils.isCityCodeEqualTo(opt.cityCode()))
+                .filter(FilterUtils.isRoomTypeEqualTo(opt.roomType()))
+                .filter(FilterUtils.isPersonNumMoreOrEqualTo(opt.personNum()))
+                .filter(FilterUtils.isReserveOptionEqualTo(opt.roomReserve()))
+                .filter(FilterUtils.isBedroomNumMoreOrEqualTo(opt.bedroomNum()))
+                .filter(FilterUtils.isBedNumMoreOrEqualTo(opt.bedNum()))
+                .filter(FilterUtils.isBathroomNumMoreOrEqualTo(opt.bathroomNum()))
+                .filter(FilterUtils.isPriceMoreOrEqualTo(opt.minPrice()))
+                .filter(FilterUtils.isPriceLessOrEqualTo(opt.maxPrice()))
+                .filter(FilterUtils.isRoomAmenitiesContainTo(opt.amenities()))
+                .filter(FilterUtils.isRoomUniqueAmenitiesContainTo(opt.uniqueAmenities()))
+                .filter(FilterUtils.isRoomAccessibilitiesContainTo(opt.accessibilites()))
+                .filter(FilterUtils.isSafetySupplyEqualTo(SafetySupply.builder()
+                        .fireAlarm(opt.fireAlarm())
+                        .aidKit(opt.aidKit())
+                        .extinguisher(opt.extinguisher())
+                        .coAlarm((opt.coAlarm()))
+                        .build()))
+                .map(RoomSimpleInfoResponse::from)
+                .toList();
     }
 
     @Override
@@ -51,36 +91,6 @@ public class RoomServiceImpl implements RoomService {
         SafetySupply safetySupply = req.safetySupplyRequest().toEntity(room);
         safetySupplyRepository.save(safetySupply);
 
-        /*for(Integer id : req.accessibility()){
-            RoomAccessibility roomAccessibility = RoomAccessibility.builder()
-                    .room(room)
-                    .accessibility(Accessibility.builder()
-                            .id(id)
-                            .build())
-                    .build();
-            roomAccessibilityRepository.save(roomAccessibility);
-        }
-
-        for(Integer id : req.amenities()){
-            RoomAmenity roomAmenity = RoomAmenity.builder()
-                    .room(room)
-                    .amenity(Amenity.builder()
-                            .id(id)
-                            .build())
-                    .build();
-            roomAmenityRepository.save(roomAmenity);
-        }
-
-        for(Integer id : req.uniqueAmenities()){
-            RoomUniqueAmenity roomUniqueAmenity = RoomUniqueAmenity.builder()
-                    .room(room)
-                    .uniqueAmenity(UniqueAmenity.builder()
-                            .id(id)
-                            .build())
-                    .build();
-            roomUniqueAmenityRepository.save(roomUniqueAmenity);
-        }*/
-
         roomAccessibilityRepository.saveAll(req.getRoomAccessibilityList(room));
         roomAmenityRepository.saveAll(req.getRoomAmenityList(room));
         roomUniqueAmenityRepository.saveAll(req.getRoomUniqueAmenityList(room));
@@ -89,17 +99,17 @@ public class RoomServiceImpl implements RoomService {
     @Override
     @Transactional
     public void updateRoom(Integer roomId, TokenInfo tokenInfo, RoomRequest req) {
-        Room room = roomRepository.findById(roomId).orElseThrow(() -> new NotFoundException("ROOM"));
+//        Room room = roomRepository.findRoomByRoomIdOnJPQL(roomId).orElseThrow(() -> new NotFoundException("ROOM"));
+        Room room = roomRepository.findRoomByRoomIdOnJPQL(roomId);
+        if (room == null) throw new NotFoundException("ROOM");
         if (room.getIsDisable()) throw new DisabledArgumentException("ROOM");
         Room roomReq = req.toEntity(roomId, tokenInfo.id(), tokenInfo.name());
         room.update(roomReq);
 
         RoomLocation roomLocation = roomLocationRepository.findByRoomId(roomId);
-//        roomLocation.update(roomReq.getRoomLocation().get(0));
         roomLocation.update(req.roomLocationRequest().toEntity(roomReq));
 
         SafetySupply safetySupply = safetySupplyRepository.findByRoomId(roomId);
-//        safetySupply.update(roomReq.getSafetySupply().get(0));
         safetySupply.update(req.safetySupplyRequest().toEntity(roomReq));
 
         roomAmenityRepository.deleteAllById(req.getDeleteRoomAmenityByIdList(room));
@@ -111,32 +121,25 @@ public class RoomServiceImpl implements RoomService {
         roomAccessibilityRepository.deleteAllById(req.getDeleteRoomAccessibilityByIdList(room));
         roomAccessibilityRepository.saveAll(req.getAddRoomAccessibilityList(room));
 
-        /*List<Integer> roomReqAccessibility = roomReq.getRoomAccessibility().stream().map(
-                e -> e.getAccessibility().getId()).toList();
-        room.getRoomAccessibility().forEach(e -> {
-            if(!roomReqAccessibility.contains(e.getAccessibility().getId())) {
-                roomAmenityRepository.deleteById(e.getId());
-            }
-        });
-        List<Integer> roomAccessibility = room.getRoomAccessibility().stream().map(
-                e -> e.getAccessibility().getId()).toList();
-        roomReq.getRoomAccessibility().forEach(e -> {
-            if(!roomAccessibility.contains(e.getAccessibility().getId())) {
-                roomAmenityRepository.save(RoomAmenity.builder()
-                        .room(room)
-                        .amenity(Amenity.builder()
-                                .id(e.getAccessibility().getId())
-                                .build())
-                        .build());
-            }
-        });*/
     }
 
     @Override
     @Transactional
     public void deleteRoom(Integer roomId) {
 //        roomRepository.deleteById(roomId);
-        Room room = roomRepository.findById(roomId).orElseThrow(() -> new NotFoundException("ROOM"));
+//        Room room = roomRepository.findById(roomId).orElseThrow(() -> new NotFoundException("ROOM"));
+//        room.disable();
+        Room room = roomRepository.findRoomByRoomIdOnJPQL(roomId);
+        if (room == null) throw new NotFoundException("ROOM");
         room.disable();
     }
+
+    @Override
+    @Transactional
+    public void deleteRoomByUserId(Integer userId) {
+        List<Room> rooms = roomRepository.findAllRoomByUserIdOnJPQL(userId);
+        if (rooms == null) throw new NotFoundException("ROOM BY USER ID");
+        rooms.forEach(Room::disable);
+    }
+
 }
