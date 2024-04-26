@@ -17,6 +17,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/room")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RoomController {
     private final RoomService roomService;
     private final JwtTokenUtils jwtTokenUtils;
@@ -84,7 +85,6 @@ public class RoomController {
     public void createRoom(
             @RequestBody RoomRequest req,
             @RequestHeader("Authorization") String bearerToken) {
-        System.out.println("제발");
         String token = bearerToken.substring(7);
         TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
         roomService.addRoom(tokenInfo.id(), tokenInfo.name(), req);
@@ -105,7 +105,7 @@ public class RoomController {
         roomService.deleteRoom(id);
     }
 
-    @DeleteMapping("/host{id}")
+    @DeleteMapping("/host/{id}")
     public void deleteRoomByUserId(@PathVariable Integer id) {
         roomService.deleteRoomByUserId(id);
     }
