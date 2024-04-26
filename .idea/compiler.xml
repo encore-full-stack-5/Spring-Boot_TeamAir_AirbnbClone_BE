@@ -8,31 +8,16 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.32/17d46b3e205515e1e8efd3ee4d57ce8018914163/lombok-1.18.32.jar" />
         </processorPath>
-        <module name="comment.main" />
+        <module name="room.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="comment" target="17" />
-      <module name="comment.main" target="17" />
-      <module name="comment.test" target="17" />
       <module name="eureka" target="17" />
       <module name="eureka.main" target="17" />
       <module name="eureka.test" target="17" />
       <module name="gateway" target="17" />
       <module name="gateway.main" target="17" />
       <module name="gateway.test" target="17" />
-      <module name="reservation" target="17" />
-      <module name="reservation.main" target="17" />
-      <module name="reservation.test" target="17" />
-      <module name="room" target="17" />
-      <module name="room.main" target="17" />
-      <module name="room.test" target="17" />
-      <module name="user" target="17" />
-      <module name="user.main" target="17" />
-      <module name="user.test" target="17" />
-      <module name="wishlist" target="17" />
-      <module name="wishlist.main" target="17" />
-      <module name="wishlist.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
