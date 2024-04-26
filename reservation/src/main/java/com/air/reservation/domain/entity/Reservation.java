@@ -33,11 +33,11 @@ public class Reservation {
     @Column()
     @Setter
     private String status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reservation")
+    @OneToMany
     @Setter
     private List<ReservationDate> reservationDates;
     @Column(name = "room_id")
     private Long roomId;
     @Column(name = "user_id")
-    private Integer userId;
+    private Long userId;
 }

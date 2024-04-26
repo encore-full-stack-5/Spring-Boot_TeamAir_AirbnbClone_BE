@@ -9,8 +9,7 @@ import org.springframework.http.HttpStatus;
 public enum ReservationErrorCode {
     INVALID_AUTH_TOKEN(HttpStatus.UNAUTHORIZED),
     RESERVE_NOT_FOUND(HttpStatus.NOT_FOUND),
-    DUPLICATE_RESOURCE(HttpStatus.CONFLICT),
-    DATE_NOT_ACCESS(HttpStatus.BAD_REQUEST);
+    DUPLICATE_RESOURCE(HttpStatus.CONFLICT),;
 
     private final HttpStatus httpStatus;
 }

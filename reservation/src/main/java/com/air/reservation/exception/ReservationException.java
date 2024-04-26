@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 public class ReservationException extends RuntimeException {
 
+    private final ReservationErrorCode reservationErrorCode;
+
     public ReservationException(ReservationErrorCode reservationErrorCode) {
+        this.reservationErrorCode = reservationErrorCode;
     }
 }

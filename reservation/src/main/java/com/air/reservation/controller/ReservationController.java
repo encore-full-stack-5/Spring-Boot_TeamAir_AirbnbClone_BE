@@ -1,7 +1,5 @@
 package com.air.reservation.controller;
 
-import com.air.reservation.config.JwtTokenUtils;
-import com.air.reservation.config.TokenInfo;
 import com.air.reservation.domain.dto.request.CreateDateRequest;
 import com.air.reservation.domain.dto.request.CreateRequest;
 import com.air.reservation.domain.dto.request.UpdateRequest;
@@ -20,16 +18,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReservationController {
     private final ReservationService reservationService;
-    private final JwtTokenUtils jwtTokenUtils;
-
-    @GetMapping("/token")
-    public String testToken() {
-        return jwtTokenUtils.createToken(1,"qwer");
-    }
-    @GetMapping("/token1")
-    public String test2Token() {
-        return jwtTokenUtils.createToken(2,"qwer");
-    }
 
     @PostMapping("/create/{id}")
     public void createReservation(@RequestBody CreateRequest req,
@@ -40,19 +28,13 @@ public class ReservationController {
     }
 
     @PostMapping("/date/create/{id}")
-    public List<ReservationDate> createReservationDate(@RequestBody CreateDateRequest req,
-                                                       @PathVariable("id") Long roomId,
-                                                       @RequestHeader("Authorization") String bearerToken) {
-        String token = bearerToken.substring(7);
-        TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
-        return reservationService.createReservationDate(req, roomId, tokenInfo);
+    public List<ReservationDate> createReservationDate(@RequestBody CreateDateRequest req, @PathVariable("id") Long roomId) {
+        return reservationService.createReservationDate(req, roomId);
     }
 
-    @GetMapping("/user/reservation")
-    public List<ReadResponse> getALlReservationToUser(@RequestHeader("Authorization") String bearerToken) {
-        String token = bearerToken.substring(7);
-        TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
-        return reservationService.getALlReservationToUser(tokenInfo);
+    @GetMapping("/user/reservation/{id}")
+    public List<ReadResponse> getByReservationToUser(@PathVariable("id") Long userId) {
+        return reservationService.getByReservationToUser(userId);
     }
 
     @GetMapping("/{id}")
@@ -61,19 +43,12 @@ public class ReservationController {
     }
 
     @PutMapping("/update/{id}")
-    public void updateReservation(@PathVariable("id") Long id,
-                                  @RequestBody UpdateRequest req,
-                                  @RequestHeader("Authorization") String bearerToken) {
-        String token = bearerToken.substring(7);
-        TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
-        reservationService.update(id, req, tokenInfo);
+    public void updateReservation(@PathVariable("id") Long id, @RequestBody UpdateRequest req) {
+        reservationService.update(id, req);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteReservation(@PathVariable("id") Long id,
-                                  @RequestHeader("Authorization") String bearerToken) {
-        String token = bearerToken.substring(7);
-        TokenInfo tokenInfo = jwtTokenUtils.parseToken(token);
-        reservationService.delete(id, tokenInfo);
+    public void deleteReservation(@PathVariable("id") Long id) {
+        reservationService.delete(id);
     }
 }
