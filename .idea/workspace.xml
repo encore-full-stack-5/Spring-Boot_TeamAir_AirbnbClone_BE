@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="80349624-5d34-41af-a3b7-98ac1bef58d5" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/comment/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/HostcommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/java/com/air/comment/controller/HostcommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/comment/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/comment/src/main/resources/application.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
