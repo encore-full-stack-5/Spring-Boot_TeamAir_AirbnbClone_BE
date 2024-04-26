@@ -16,7 +16,7 @@ public class SafetySupply {
     @Column(name="SAFETY_ID")
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ROOM_ID")
     private Room room;
 

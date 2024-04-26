@@ -1,5 +1,6 @@
 package com.air.reservation.service;
 
+import com.air.reservation.config.TokenInfo;
 import com.air.reservation.domain.dto.request.CreateDateRequest;
 import com.air.reservation.domain.dto.request.CreateRequest;
 import com.air.reservation.domain.dto.request.UpdateRequest;
@@ -35,15 +36,15 @@ public class ReservationServiceImpl implements ReservationService{
     public void create(CreateRequest req, Long roomId, String startDate, String endDate) {
         try {
             Reservation reservation = reservationRepository.findByRoomIdCheckInCheckOut(roomId, startDate, endDate);
-            System.out.println(reservation);
             if(reservation == null || !reservation.getRoomId().equals(roomId)) {
                 throw new ReservationException(ReservationErrorCode.RESERVE_NOT_FOUND);
             }
+
             List<ReservationDate> reservationDates = reservationDateRepository.findByReservationId(reservation.getId());
             reservation.setGuestCount(req.guestCount());
             reservation.setMessage(req.message());
-            reservation.setTotal_money(req.totalMoney());
             reservation.setStatus(req.status());
+            reservation.setTotal_money(req.totalMoney());
             reservation.setReservationDates(reservationDates);
             reservationRepository.save(reservation);
 
@@ -53,7 +54,7 @@ public class ReservationServiceImpl implements ReservationService{
         }
     }
 
-    private  void reservationCancel(Reservation reservation) {
+    private void reservationCancel(Reservation reservation) {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.schedule(() -> {
             reservation.setStatus("cancel");
@@ -63,13 +64,27 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public List<ReservationDate> createReservationDate(CreateDateRequest req, Long roomId) {
+    public List<ReservationDate> createReservationDate(CreateDateRequest req, Long roomId, TokenInfo tokenInfo) {
+        if(tokenInfo == null) throw new ReservationException(ReservationErrorCode.INVALID_AUTH_TOKEN);
+        if(LocalDate.now().isAfter(LocalDate.parse(req.checkIn()))) {
+            throw new ReservationException(ReservationErrorCode.DATE_NOT_ACCESS);
+        }
         String[] startDate = req.checkIn().split("-");
         String[] endDate = req.checkOut().split("-");
-        Reservation reservation = reservationRepository.save(new Reservation(null, null, req.checkIn(), req.checkOut(), null, null,"pending", null, roomId));
-        List<ReservationDate> reservationDates = reservationDateRepository.findByDateRange(reservation.getId(), startDate[2], endDate[2]);
-        if(!reservationDates.isEmpty() && startDate[1].equals(reservationDates.get(0).getMonth()) && endDate[1].equals(reservationDates.get(reservationDates.size()-1).getMonth()))
-            throw new IllegalArgumentException();
+
+        List<ReservationDate> reservationDates = reservationDateRepository.findByDateRange(roomId, startDate[2], endDate[2]);
+        if(!reservationDates.isEmpty()) {
+            throw new ReservationException(ReservationErrorCode.DUPLICATE_RESOURCE);
+        }
+
+        Reservation reservation = reservationRepository.save(new Reservation(
+                null, null, req.checkIn(),
+                req.checkOut(), null, null,
+                "pending", null,
+                roomId,
+                tokenInfo.id()
+        ));
+
         List<ReservationDate> reservationDateList= calDate(req.checkIn(), req.checkOut(), reservation);
         return reservationDateRepository.saveAll(reservationDateList);
     }
@@ -93,12 +108,21 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
-    public List<ReadResponse> getByReservationToUser(Long userId) {
-        List<Reservation> reservations = reservationRepository.findByUserId(userId);
-        reservations.stream().map(reservation -> {
+    public List<ReadResponse> getALlReservationToUser(TokenInfo tokenInfo) {
+        if(tokenInfo == null) throw new ReservationException(ReservationErrorCode.INVALID_AUTH_TOKEN);
 
-        })
-        return List.of();
+        List<Reservation> reservations = reservationRepository.findByUserId(tokenInfo.id());
+        if(reservations.isEmpty()) throw new ReservationException(ReservationErrorCode.INVALID_AUTH_TOKEN);
+//        List<ReadResponse> reservationList = new ArrayList<>();
+        return reservations.stream().map(reservation ->
+                new ReadResponse(reservation.getId(),
+                    reservation.getGuestCount(),
+                    reservation.getStartDate(),
+                    reservation.getEndDate(),
+                    reservation.getMessage(),
+                    reservation.getTotal_money(),
+                    reservation.getRoomId())).toList();
+
     }
 
     @Override
@@ -107,25 +131,50 @@ public class ReservationServiceImpl implements ReservationService{
         return new ReadResponse(reservation.getId(),
                 reservation.getGuestCount(),
                 reservation.getStartDate(), reservation.getEndDate(),
-                reservation.getMessage(), reservation.getTotal_money(), reservation.getStatus());
+                reservation.getMessage(), reservation.getTotal_money(), reservation.getRoomId());
     }
 
     @Override
-    public void update(Long id, UpdateRequest req) {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(() -> new ReservationException(ReservationErrorCode.RESERVE_NOT_FOUND));
-        reservation.setGuestCount(req.guest_count());
+    @Transactional
+    public void update(Long id, UpdateRequest req, TokenInfo tokenInfo) {
+        if(tokenInfo == null) throw new ReservationException(ReservationErrorCode.INVALID_AUTH_TOKEN);
+        Reservation reservation = reservationRepository.findByIdAndUserId(id, tokenInfo.id());
+
+        if(reservation == null || !reservation.getId().equals(id))
+            throw new ReservationException(ReservationErrorCode.RESERVE_NOT_FOUND);
+        else if(!reservation.getUserId().equals(tokenInfo.id()))
+            throw new ReservationException(ReservationErrorCode.INVALID_AUTH_TOKEN);
+
+        List<ReservationDate> byReservationId = reservationDateRepository
+                .findByReservationId(
+                        reservation.getId());
+        reservationDateRepository.deleteAll(byReservationId);
+//        byReservationId
+//                .forEach(reservationDateRepository::delete);
+
+        CreateDateRequest createDateRequest = new CreateDateRequest(req.startDate(), req.endDate());
+        List<ReservationDate> reservationDates = this.createReservationDate(createDateRequest, reservation.getRoomId(), tokenInfo);
+
+        reservation.setGuestCount(req.guestCount());
         reservation.setStartDate(req.startDate());
         reservation.setEndDate(req.endDate());
         reservation.setMessage(req.message());
-        reservation.setTotal_money(req.total_money());
+        reservation.setTotal_money(req.totalMoney());
+        reservation.setReservationDates(reservationDates);
+
         reservationRepository.save(reservation);
     }
 
     @Override
-    public void delete(Long id) {
-        Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(() -> new ReservationException(ReservationErrorCode.RESERVE_NOT_FOUND));
+    public void delete(Long id, TokenInfo tokenInfo) {
+        if(tokenInfo == null) throw new ReservationException(ReservationErrorCode.INVALID_AUTH_TOKEN);
+
+        Reservation reservation = reservationRepository.findByIdAndUserId(id, tokenInfo.id());
+        if(reservation == null || !reservation.getId().equals(id))
+            throw new ReservationException(ReservationErrorCode.RESERVE_NOT_FOUND);
+        else if(!reservation.getUserId().equals(tokenInfo.id()))
+            throw new ReservationException(ReservationErrorCode.INVALID_AUTH_TOKEN);
+
         reservationRepository.delete(reservation);
     }
 }
