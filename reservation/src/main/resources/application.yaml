@@ -19,3 +19,6 @@ eureka:
     prefer-ip-address: true
     instance-id: reservation
 
+token:
+  secret: asjdkfnof4241085931nklasf1n1032nlkdsfmi1m2k2
+  expiration: 60000000

@@ -1,21 +1,23 @@
 package com.air.reservation.domain.dto.request;
 
 import com.air.reservation.domain.entity.Reservation;
+import com.air.reservation.domain.entity.ReservationDate;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public record UpdateRequest(
-        Integer guest_count, String startDate, String endDate,
-        String message, Integer total_money, String status
+        Integer guestCount, String startDate, String endDate,
+        String message, Integer totalMoney
 ) {
-    public Reservation toEntity() {
+    public Reservation toEntity(List<ReservationDate> reservationDates) {
         return Reservation.builder()
-                .guestCount(guest_count)
+                .guestCount(guestCount)
                 .startDate(startDate)
                 .endDate(endDate)
                 .message(message)
-                .total_money(total_money)
-                .status(status)
+                .total_money(totalMoney)
+                .reservationDates(reservationDates)
                 .build();
     }
 }
