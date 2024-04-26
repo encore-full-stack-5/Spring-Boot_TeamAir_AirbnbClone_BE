@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByIdAndUserDisableFalse(userId);
         user.setUserDisable(true);
         user.setEmail(null);
-//        apiRoom.disableRoom(userId);
+        apiRoom.disableRoom(userId);
     }
     //토큰 재발급
     @Override
